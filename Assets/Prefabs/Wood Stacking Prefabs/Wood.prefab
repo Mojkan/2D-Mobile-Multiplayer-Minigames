@@ -204,5 +204,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  gravity: 9.82
   rb2D: {fileID: 6620474427175096557}
-  boxCollider2D: {fileID: 3475180924180187837}
