@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9116465979831988931}
   - component: {fileID: 5322931548484380222}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WoodSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 6620474427175096557}
   - component: {fileID: 3475180924180187837}
   - component: {fileID: 2452572232074810013}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wood
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 9c5e1a530d7316645b89d42f43300921, type: 2}
   m_IncludeLayers:
@@ -144,7 +144,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &3475180924180187837
 BoxCollider2D:
@@ -205,3 +205,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   rb2D: {fileID: 6620474427175096557}
+  boxCollider2D: {fileID: 3475180924180187837}

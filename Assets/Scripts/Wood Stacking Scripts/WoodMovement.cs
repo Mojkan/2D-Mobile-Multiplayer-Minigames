@@ -9,6 +9,7 @@ public class WoodMovement : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] Rigidbody2D rb2D;
+    [SerializeField] BoxCollider2D boxCollider2D;
 
     WoodSpawner woodSpawner;
     bool woodDropped;
@@ -62,6 +63,15 @@ public class WoodMovement : MonoBehaviour
 
     void CheckWoodLanding()
     {
+        //Physics2D.IgnoreCollision(boxCollider2D, boxCollider2D, true);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.25f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(transform.position + new Vector3(0, -0.25f, 0), Vector2.down, Color.red, 0.01f);
+        if (hit.collider != null)
+        {
+            rb2D.velocity = Vector2.zero;
+            Debug.Log("Test");
+        }
+
         if (checkLanding)
         {
             if (rb2D.velocity.magnitude < 0.01f || transform.position.y < -6)
