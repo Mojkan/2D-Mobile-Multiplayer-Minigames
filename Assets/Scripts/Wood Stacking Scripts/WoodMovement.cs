@@ -68,9 +68,11 @@ public class WoodMovement : MonoBehaviour
     {
         if (woodDropped)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, -0.251f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.2505f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(0.25f, -0.2505f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit3 = Physics2D.Raycast(transform.position + new Vector3(-0.25f, -0.2505f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
 
-            if (hit.collider != null)
+            if (hit1.collider != null || hit2.collider != null || hit3.collider != null)
             {
                 rb2D.velocity = Vector2.zero;
                 rb2D.gravityScale = 1;
