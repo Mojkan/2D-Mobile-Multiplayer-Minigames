@@ -25,11 +25,13 @@ public class WoodMovement : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             woodDropped = true;
+            woodSpawner.currentWood = null;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             woodDropped = true;
+            woodSpawner.currentWood = null;
         }
 
         AddMovmentXAxis();
@@ -77,8 +79,7 @@ public class WoodMovement : MonoBehaviour
                 rb2D.velocity = Vector2.zero;
                 rb2D.gravityScale = 1;
 
-                woodSpawner.ySpawnPos += transform.localScale.x;
-                woodSpawner.currentWood = null;
+                woodSpawner.SpawnNewWood();
                 this.enabled = false;
             }
         }

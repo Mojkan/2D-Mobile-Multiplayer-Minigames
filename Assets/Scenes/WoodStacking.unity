@@ -169,6 +169,8 @@ MonoBehaviour:
   minXSpawnPos: -1.5
   maxXSpawnPos: 1.5
   ySpawnPos: 2
+  cameraSpeed: 2
+  cam: {fileID: 519420031}
   woodPrefab: {fileID: 8417998310336698053, guid: e3e34a27e422a8a44a85591dc00a3e9b, type: 3}
   currentWood: {fileID: 0}
 --- !u!1 &404731635
