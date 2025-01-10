@@ -11,6 +11,7 @@ public class WoodMovement : MonoBehaviour
     [Header("Reference")]
     [SerializeField] Rigidbody2D rb2D;
 
+    GameManager gameManager;
     WoodSpawner woodSpawner;
     float fallSpeed;
     bool woodDropped;
@@ -18,9 +19,23 @@ public class WoodMovement : MonoBehaviour
     void Start()
     {
         woodSpawner = GameObject.Find("WoodSpawner").GetComponent<WoodSpawner>();    
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
+    {
+        if (gameManager.currentState != GameManager.GameState.running)
+        {
+            Destroy(gameObject);
+        }
+
+        GetInput();
+        AddMovmentXAxis();
+        AddMovementYAxis();
+        CheckWoodLanding();
+    }
+
+    void GetInput()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
@@ -33,10 +48,6 @@ public class WoodMovement : MonoBehaviour
             woodDropped = true;
             woodSpawner.currentWood = null;
         }
-
-        AddMovmentXAxis();
-        AddMovementYAxis();
-        CheckWoodLanding();
     }
 
     void AddMovmentXAxis()
