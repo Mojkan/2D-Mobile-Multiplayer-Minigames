@@ -24,7 +24,7 @@ public class WoodMovement : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.currentState != GameManager.GameState.running)
+        if (gameManager.currentState != GameManager.GameState.running && !woodDropped)
         {
             Destroy(gameObject);
         }
