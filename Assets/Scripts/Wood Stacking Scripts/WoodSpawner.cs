@@ -13,6 +13,8 @@ public class WoodSpawner : MonoBehaviour
     [Header("Reference")]
     [SerializeField] Camera cam;
     [SerializeField] GameObject woodPrefab;
+    [SerializeField] GameManager gameManager;
+
     [HideInInspector] public GameObject currentWood;
 
     Vector3 cameraStartPos;
@@ -36,19 +38,11 @@ public class WoodSpawner : MonoBehaviour
 
     public void SpawnNewWood()
     {
-        CountWood();
-        InstantiateWood();
-    }
-
-    public void UpdateWoodManager()
-    {
-        if (currentWood != null)
+        if (gameManager.currentState == GameManager.GameState.running)
         {
-            ySpawnPos = spawnStart + woodCount / 2;
-            currentWood.transform.position = new Vector3(currentWood.transform.position.x, ySpawnPos, 0);
+            CountWood();
+            InstantiateWood();
         }
-
-        CountWood();
     }
 
     void InstantiateWood()
