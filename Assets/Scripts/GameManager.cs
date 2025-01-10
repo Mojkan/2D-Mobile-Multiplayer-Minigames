@@ -72,6 +72,6 @@ public class GameManager : MonoBehaviour
         scoreText.text = points.ToString();
 
         float value = points / maxScoreColor;
-        scoreText.color = Color.Lerp(Color.green, Color.red, value);
+        scoreText.color = Color.Lerp(Color.white, Color.red, value);
     }
 }
