@@ -1,26 +1,59 @@
 using UnityEngine;
-using Firebase; //We need to include all Firebase stuff
+using Firebase;
+using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
 
 public class FirebaseTest : MonoBehaviour
 {
-    FirebaseDatabase db;
+    FirebaseAuth auth; // Videolektion: 1 Tid: 48:00
 
     void Start()
     {
-        //Setup for talking to firebase
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
-            //Log if we get any errors from the opperation
             if (task.Exception != null)
                 Debug.LogError(task.Exception);
 
-            //the database
-            db = FirebaseDatabase.DefaultInstance;
+            auth = FirebaseAuth.DefaultInstance;
+        });
+    }
 
-            //Set the value World to the key Hello in the database
-            db.RootReference.Child("Hello").SetValueAsync("World");
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+            AnonymousSignIn();
+
+        if (Input.GetKeyDown(KeyCode.D))
+            DataTest(auth.CurrentUser.UserId, Random.Range(0, 100).ToString());
+    }
+
+    private void AnonymousSignIn()
+    {
+        auth.SignInAnonymouslyAsync().ContinueWithOnMainThread(task => {
+            if (task.Exception != null)
+            {
+                Debug.LogWarning(task.Exception);
+            }
+            else
+            {
+                FirebaseUser newUser = task.Result.User;
+                Debug.LogFormat("User signed in successfully: {0} ({1})",
+                    newUser.DisplayName, newUser.UserId);
+            }
+        });
+    }
+
+    private void DataTest(string userID, string data)
+    {
+        Debug.Log("Trying to write data...");
+        var db = FirebaseDatabase.DefaultInstance;
+        db.RootReference.Child("users").Child(userID).SetValueAsync(data).ContinueWithOnMainThread(task =>
+        {
+            if (task.Exception != null)
+                Debug.LogWarning(task.Exception);
+            else
+                Debug.Log("DataTestWrite: Complete");
         });
     }
 }
