@@ -5,14 +5,14 @@ using UnityEngine;
 public class WoodMovement : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float moveSpeed;
-    [SerializeField] float gravity;
+    [SerializeField] float moveSpeedHorizontal;
+    [SerializeField] float gravityStrength;
 
     [Header("Reference")]
     [SerializeField] Rigidbody2D rb2D;
-
-    GameManager gameManager;
     WoodSpawner woodSpawner;
+    GameManager gameManager;
+
     float fallSpeed;
     bool woodDropped;
 
@@ -24,14 +24,14 @@ public class WoodMovement : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.currentState != GameManager.GameState.running && !woodDropped)
+        if (gameManager.currentGameState != GameManager.GameState.running && !woodDropped)
         {
             Destroy(gameObject);
         }
 
         GetInput();
-        AddMovmentXAxis();
-        AddMovementYAxis();
+        AddHorizontalMovment();
+        AddVerticalMovment();
         CheckWoodLanding();
     }
 
@@ -50,28 +50,28 @@ public class WoodMovement : MonoBehaviour
         }
     }
 
-    void AddMovmentXAxis()
+    void AddHorizontalMovment()
     {
         if (!woodDropped)
         {
             if (transform.position.x >= 1.5f)
             {
-                moveSpeed = -Mathf.Abs(moveSpeed);
+                moveSpeedHorizontal = -Mathf.Abs(moveSpeedHorizontal);
             }
             else if (transform.position.x <= -1.5f)
             {
-                moveSpeed = Mathf.Abs(moveSpeed);
+                moveSpeedHorizontal = Mathf.Abs(moveSpeedHorizontal);
             }
 
-            rb2D.transform.position += new Vector3(moveSpeed * Time.deltaTime, 0, 0);
+            rb2D.transform.position += new Vector3(moveSpeedHorizontal * Time.deltaTime, 0, 0);
         }
     }
 
-    void AddMovementYAxis()
+    void AddVerticalMovment()
     {
         if (woodDropped)
         {
-            fallSpeed += gravity * Time.deltaTime;
+            fallSpeed += gravityStrength * Time.deltaTime;
 
             rb2D.transform.position += new Vector3(0, -fallSpeed * Time.deltaTime, 0);
         }

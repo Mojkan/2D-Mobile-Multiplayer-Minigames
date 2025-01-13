@@ -6,14 +6,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float timeLimit;
+    [SerializeField] float gameTimeLimit;
     [SerializeField] float maxScoreColor;
+    [SerializeField] float woodCountSpeed;
 
     [Header("Reference")]
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] TextMeshProUGUI scoreText;
 
-    float timer;
+    float gameTimer;
     int points;
 
     [HideInInspector] public enum GameState
@@ -23,11 +24,11 @@ public class GameManager : MonoBehaviour
         end
     }
 
-    public GameState currentState = GameState.start;
+    public GameState currentGameState = GameState.start;
 
     void Start()
     {
-        timer = timeLimit;
+        gameTimer = gameTimeLimit;
     }
 
     void Update()
@@ -37,17 +38,17 @@ public class GameManager : MonoBehaviour
 
     void UpdateTimer()
     {
-        if (currentState == GameState.running)
+        if (currentGameState == GameState.running)
         {
-            if (timer > 0)
+            if (gameTimer > 0)
             {
-                timerText.text = timer.ToString("F1");
-                timer -= Time.deltaTime;
+                timerText.text = gameTimer.ToString("F1");
+                gameTimer -= Time.deltaTime;
             }
             else
             {
                 timerText.gameObject.SetActive(false);
-                currentState = GameState.end;
+                currentGameState = GameState.end;
                 StartCoroutine(CountWood());
             }
         }
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(wood[i]);
             UpdateScore();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(woodCountSpeed);
         }
     }
 

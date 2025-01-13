@@ -9,7 +9,7 @@ public class AnimationEvents : MonoBehaviour
 
     void startGame()
     {
-        gameManager.currentState = GameManager.GameState.running;
+        gameManager.currentGameState = GameManager.GameState.running;
     }
 
     void startWoodSpawner()

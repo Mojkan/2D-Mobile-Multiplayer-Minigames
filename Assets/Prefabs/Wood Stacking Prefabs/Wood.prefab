@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884be827f7d51b146b190426968201ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  gravity: 9.82
+  moveSpeedHorizontal: 5
+  gravityStrength: 9.82
   rb2D: {fileID: 6620474427175096557}
 --- !u!114 &-8027806903983037612
 MonoBehaviour:

@@ -642,11 +642,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf1f57fc15ac224faadbbcfecef36a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 30
-  maxScoreColor: 10
+  gameTimeLimit: 30
+  maxScoreColor: 18
+  woodCountSpeed: 0.15
   timerText: {fileID: 1313578432}
   scoreText: {fileID: 2057815551}
-  currentState: 0
+  currentGameState: 0
 --- !u!1 &748337183
 GameObject:
   m_ObjectHideFlags: 0
