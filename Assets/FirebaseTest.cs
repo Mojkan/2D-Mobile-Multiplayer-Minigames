@@ -6,7 +6,7 @@ using Firebase.Extensions;
 
 public class FirebaseTest : MonoBehaviour
 {
-    FirebaseAuth auth; // Videolektion: 1 Tid: 48:00
+    FirebaseAuth auth; // Videolektion: 2 Tid: 00:00
 
     void Start()
     {
@@ -26,6 +26,15 @@ public class FirebaseTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
             DataTest(auth.CurrentUser.UserId, Random.Range(0, 100).ToString());
+
+        if (Input.GetKeyDown(KeyCode.R))
+            RegisterNewUser("kalle@gmail.com", "Kalle123");
+
+        if (Input.GetKeyDown(KeyCode.S))
+            SignIn("kalle@gmail.com", "Kalle123");
+
+        if (Input.GetKeyDown(KeyCode.O))
+            SignOut();
     }
 
     private void AnonymousSignIn()
@@ -55,5 +64,46 @@ public class FirebaseTest : MonoBehaviour
             else
                 Debug.Log("DataTestWrite: Complete");
         });
+    }
+
+    private void RegisterNewUser(string email, string password)
+    {
+        Debug.Log("Starting Registration");
+        auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
+        {
+            if (task.Exception != null)
+            {
+                Debug.LogWarning(task.Exception);
+            }
+            else
+            {
+                FirebaseUser newUser = task.Result.User;
+                Debug.LogFormat("User Registerd: {0} ({1})",
+                  newUser.DisplayName, newUser.UserId);
+            }
+        });
+    }
+
+    private void SignIn(string email, string password)
+    {
+        auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
+        {
+            if (task.Exception != null)
+            {
+                Debug.LogWarning(task.Exception);
+            }
+            else
+            {
+                FirebaseUser newUser = task.Result.User;
+                Debug.LogFormat("User signed in successfully: {0} ({1})",
+                  newUser.DisplayName, newUser.UserId);
+            }
+        });
+    }
+
+    private void SignOut()
+    {
+        auth.SignOut();
+        Debug.Log("User signed out");
     }
 }
