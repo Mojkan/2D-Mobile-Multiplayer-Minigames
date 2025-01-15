@@ -18,6 +18,8 @@ public class WoodMovement : MonoBehaviour
     {
         woodSpawner = GameObject.Find("WoodSpawner").GetComponent<WoodSpawner>();    
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        moveSpeedHorizontal = Random.Range(0f, 1f) > 0.5f ? moveSpeedHorizontal : -moveSpeedHorizontal;
     }
 
     void Update()
