@@ -42,38 +42,36 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void RegisterNewUser(string email, string password)
+    public void RegisterNewUser(string email, string password, System.Action onSuccess, System.Action<string> onFailure)
     {
         Debug.Log("Starting Registration");
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.Exception != null)
             {
-                Debug.LogWarning(task.Exception);
+                onFailure?.Invoke(task.Exception.Message);
             }
             else
             {
                 FirebaseUser newUser = task.Result.User;
-                Debug.LogFormat("User Registered: {0} ({1})",
-                  newUser.DisplayName, newUser.UserId);
+                onSuccess?.Invoke();
             }
         });
     }
 
-    public void SignIn(string email, string password)
+    public void SignIn(string email, string password, System.Action onSuccess, System.Action<string> onFailure)
     {
         Debug.Log("Starting Sign-In");
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.Exception != null)
             {
-                Debug.LogWarning(task.Exception);
+                onFailure?.Invoke(task.Exception.Message);
             }
             else
             {
                 FirebaseUser newUser = task.Result.User;
-                Debug.LogFormat("User signed in successfully: {0} ({1})",
-                  newUser.DisplayName, newUser.UserId);
+                onSuccess?.Invoke();
             }
         });
     }
