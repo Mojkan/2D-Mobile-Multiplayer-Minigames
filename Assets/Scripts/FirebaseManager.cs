@@ -9,6 +9,7 @@ public class FirebaseManager : MonoBehaviour
     public static FirebaseManager Instance { get; private set; }
 
     FirebaseAuth auth;
+    FirebaseDatabase db;
 
     void Awake()
     {
@@ -38,26 +39,30 @@ public class FirebaseManager : MonoBehaviour
             }
 
             auth = FirebaseAuth.DefaultInstance;
+            db = FirebaseDatabase.DefaultInstance;
             Debug.Log("Firebase initialized successfully.");
         });
     }
 
-    public void RegisterNewUser(string email, string password, System.Action onSuccess, System.Action<string> onFailure)
+    public void RegisterNewUser(string email, string password, string userProfile, System.Action onSuccess, System.Action<string> onFailure)
     {
-        Debug.Log("Starting Registration");
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
-            if (task.Exception != null)
+            if (task.IsCompleted && !task.IsFaulted)
             {
-                onFailure?.Invoke(task.Exception.Message);
+                FirebaseUser newUser = task.Result.User;
+
+                db.RootReference.Child("users").Child(newUser.UserId).SetRawJsonValueAsync(userProfile);
+
+                onSuccess?.Invoke();
             }
             else
             {
-                FirebaseUser newUser = task.Result.User;
-                onSuccess?.Invoke();
+                onFailure?.Invoke(task.Exception?.Message);
             }
         });
     }
+
 
     public void SignIn(string email, string password, System.Action onSuccess, System.Action<string> onFailure)
     {
