@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerProfile
 {
     public string username;
-    public string createdAt;
+    public string created;
 }
 
 public class Register : MonoBehaviour
@@ -18,7 +18,7 @@ public class Register : MonoBehaviour
     {
         PlayerProfile newProfile = new PlayerProfile();
         newProfile.username = userNameInput.text;
-        newProfile.createdAt = System.DateTime.UtcNow.ToString("o");
+        newProfile.created = System.DateTime.UtcNow.ToString("o");
 
         string newProfileJson = JsonUtility.ToJson(newProfile);
 

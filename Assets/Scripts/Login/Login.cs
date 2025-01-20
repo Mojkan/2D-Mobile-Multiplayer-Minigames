@@ -15,7 +15,7 @@ public class Login : MonoBehaviour
     private void OnSignInSuccess()
     {
         Debug.Log("Sign-in successful! Loading next scene...");
-        SceneManager.LoadScene("WoodStacking");
+        SceneManager.LoadScene("Menu");
     }
 
     private void OnSignInFailure(string error)
