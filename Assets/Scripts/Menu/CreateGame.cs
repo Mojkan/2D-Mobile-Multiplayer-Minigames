@@ -30,9 +30,9 @@ public class GameLobby
     public GameLobby(int maxPlayers)
     {
         MaxPlayers = maxPlayers;
+        currentLobbyState = LobbyState.waitforplayers;
 
         Players = new List<Player>();
-        currentLobbyState = LobbyState.waitforplayers;
     }
 }
 
@@ -41,10 +41,13 @@ public class CreateGame : MonoBehaviour
 {
     public void CreateLobby()
     {
-        Player testuser = new Player("Test", 0);
+        // Create new player
+        Player newUser = new Player(FirebaseManager.Instance.savedUsername, 0);
 
+        // Create new lobby
         GameLobby newLobby = new GameLobby(2);
-        newLobby.Players.Add(testuser);
+        // Add player to a list within the lobby instance
+        newLobby.Players.Add(newUser);
         string newLobbyJson = JsonUtility.ToJson(newLobby);
 
         string lobbyCode = Random.Range(100000, 1000000).ToString();

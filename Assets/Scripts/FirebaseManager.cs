@@ -8,6 +8,7 @@ public class FirebaseManager : MonoBehaviour
 {
     public static FirebaseManager Instance { get; private set; }
 
+    public string savedUsername;
     FirebaseAuth auth;
     FirebaseDatabase db;
 
@@ -63,7 +64,6 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-
     public void SignIn(string email, string password, System.Action onSuccess, System.Action<string> onFailure)
     {
         Debug.Log("Starting Sign-In");
@@ -81,7 +81,7 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void LoadPlayerName(System.Action<string> onPlayerNameLoaded)
+    public void GetUsername(System.Action<string> onPlayerNameLoaded)
     {
         db.RootReference.Child("users").Child(auth.CurrentUser.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -90,13 +90,12 @@ public class FirebaseManager : MonoBehaviour
                 DataSnapshot snapshot = task.Result;
 
                 string username = snapshot.Child("username").Value.ToString();
+                savedUsername = username;
                 onPlayerNameLoaded?.Invoke(username);
-                return;
             }
             else
             {
                 Debug.LogError("Failed to load username: " + task.Exception);
-                onPlayerNameLoaded?.Invoke(null);
             }
         });
     }
