@@ -89,6 +89,6 @@ public class GameLobbyManager : MonoBehaviour
 
     void onJoiningLobbyFailure()
     {
-
+        Debug.Log("Failed to join lobby");
     }
 }
