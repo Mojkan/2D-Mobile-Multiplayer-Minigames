@@ -123,12 +123,10 @@ public class FirebaseManager : MonoBehaviour
         {
             if (task.IsCompleted)
             {
-                Debug.Log($"Player {player} added to lobby {lobbyCode}");
                 OnSuccess?.Invoke();
             }
             else
             {
-                Debug.LogError("Failed to add player: " + task.Exception);
                 OnFailure?.Invoke();
             }
         });

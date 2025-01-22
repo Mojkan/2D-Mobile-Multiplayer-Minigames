@@ -75,11 +75,11 @@ public class GameLobbyManager : MonoBehaviour
         Debug.Log("Failed to create lobby");
     }
 
-    public void JoinLobby()
+    public void JoinLobby(string lobbyCode)
     {
         Player newPlayer = new Player(FirebaseManager.Instance.savedUsername, 0);
 
-        FirebaseManager.Instance.JoinLobby("674494", newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
+        FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
     }
 
     void OnJoiningLobbySuccess()
