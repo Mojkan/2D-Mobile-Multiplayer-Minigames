@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 856955819}
   - component: {fileID: 856955818}
   - component: {fileID: 856955817}
+  - component: {fileID: 856955820}
   m_Layer: 5
   m_Name: JoinGameButton
   m_TagString: Untagged
@@ -511,7 +512,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 856955818}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 856955820}
+        m_TargetAssemblyTypeName: GameLobbyManager, Assembly-CSharp
+        m_MethodName: JoinLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &856955818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +563,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856955814}
   m_CullTransparentMesh: 1
+--- !u!114 &856955820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856955814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9e68926bec4f34685c45027d8346c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1062060557
 GameObject:
   m_ObjectHideFlags: 0

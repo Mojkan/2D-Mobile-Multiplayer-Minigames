@@ -100,36 +100,36 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void AddPlayerToLobby(string lobbyCode, string playerName, int playerScore)
+    public void CreateNewLobby(string lobbyCode, string lobbyData, System.Action<string> OnSuccess, System.Action OnFailure)
     {
-        Player newPlayer = new Player(playerName, playerScore);
-        string playerJson = JsonUtility.ToJson(newPlayer);
-
-        db.RootReference.Child("lobbies").Child(lobbyCode).Child("Players").SetRawJsonValueAsync(playerJson).ContinueWithOnMainThread(task =>
+        db.RootReference.Child("gamelobbies").Child(lobbyCode).SetRawJsonValueAsync(lobbyData).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
-                Debug.Log($"Player {playerName} added to lobby {lobbyCode}");
+                OnSuccess?.Invoke(lobbyCode);
             }
             else
             {
-                Debug.LogError("Failed to add player: " + task.Exception);
+                OnFailure?.Invoke();
             }
         });
     }
 
-    public void SaveCreatedGame(string lobbyCode, string lobbyData, System.Action onSuccess, System.Action onFailure)
+    public void JoinLobby(string lobbyCode, Player player, System.Action OnSuccess, System.Action OnFailure)
     {
-        db.RootReference.Child("gamelobbies").Child(lobbyCode).SetRawJsonValueAsync(lobbyData).ContinueWithOnMainThread(task =>
+        var playersRef = db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players");
+
+        playersRef.Push().SetValueAsync(player.ToDictionary()).ContinueWithOnMainThread(task =>
         {
-            if (task.Exception != null)
+            if (task.IsCompleted)
             {
-                Debug.LogWarning(task.Exception);
-                onFailure?.Invoke();
+                Debug.Log($"Player {player} added to lobby {lobbyCode}");
+                OnSuccess?.Invoke();
             }
             else
             {
-                onSuccess?.Invoke();
+                Debug.LogError("Failed to add player: " + task.Exception);
+                OnFailure?.Invoke();
             }
         });
     }
