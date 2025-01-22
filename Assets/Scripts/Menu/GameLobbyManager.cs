@@ -51,6 +51,8 @@ public class GameLobby
 
 public class GameLobbyManager : MonoBehaviour
 {
+    [SerializeField] LobbyUIManager lobbyUIManager;
+
     public static GameLobbyManager Instance { get; private set; }
 
     void Awake()
@@ -98,7 +100,7 @@ public class GameLobbyManager : MonoBehaviour
 
     void OnJoiningLobbySuccess()
     {
-
+        lobbyUIManager.EnableLobbyUI();
     }
 
     void onJoiningLobbyFailure()

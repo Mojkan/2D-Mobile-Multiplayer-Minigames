@@ -9,6 +9,7 @@ public class FirebaseManager : MonoBehaviour
     public static FirebaseManager Instance { get; private set; }
 
     [HideInInspector] public string savedUsername;
+    [HideInInspector] public string savedLobbyCode;
     FirebaseAuth auth;
     FirebaseDatabase db;
 
@@ -123,6 +124,7 @@ public class FirebaseManager : MonoBehaviour
         {
             if (task.IsCompleted)
             {
+                savedLobbyCode = lobbyCode;
                 OnSuccess?.Invoke();
             }
             else
