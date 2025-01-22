@@ -8,7 +8,7 @@ public class FirebaseManager : MonoBehaviour
 {
     public static FirebaseManager Instance { get; private set; }
 
-    public string savedUsername;
+    [HideInInspector] public string savedUsername;
     FirebaseAuth auth;
     FirebaseDatabase db;
 

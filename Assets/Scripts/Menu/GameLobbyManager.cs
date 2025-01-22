@@ -51,6 +51,20 @@ public class GameLobby
 
 public class GameLobbyManager : MonoBehaviour
 {
+    public static GameLobbyManager Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void CreateLobby()
     {
         GameLobby newLobby = new GameLobby(2);

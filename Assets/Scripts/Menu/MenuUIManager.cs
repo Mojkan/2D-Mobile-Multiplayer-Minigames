@@ -5,8 +5,7 @@ public class MenuUIManager : MonoBehaviour
 {
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject JoinLobbyUI;
-    [SerializeField] TMP_InputField lobbyCodeInput;
-    [SerializeField] GameLobbyManager gameLobbyManager;    
+    [SerializeField] TMP_InputField lobbyCodeInput; 
 
     public void EnableEnterLobbyCodeUI()
     {
@@ -22,6 +21,6 @@ public class MenuUIManager : MonoBehaviour
 
     public void SendLobbyCode()
     {
-        gameLobbyManager.JoinLobby(lobbyCodeInput.text);
+        GameLobbyManager.Instance.JoinLobby(lobbyCodeInput.text);
     }
 }
