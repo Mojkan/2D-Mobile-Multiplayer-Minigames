@@ -98,6 +98,7 @@ public class GameLobbyManager : MonoBehaviour
     void OnJoiningLobbySuccess()
     {
         lobbyUIManager.EnableLobbyUI();
+        lobbyUIManager.UpdateUserInfoUI();
     }
 
     void onJoiningLobbyFailure()

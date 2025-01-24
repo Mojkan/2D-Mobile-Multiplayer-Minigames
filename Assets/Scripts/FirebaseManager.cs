@@ -3,6 +3,7 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
+using System.Collections.Generic;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -128,6 +129,31 @@ public class FirebaseManager : MonoBehaviour
             else
             {
                 OnFailure?.Invoke();
+            }
+        });
+    }
+
+    public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure)
+    {
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted && task.Result.Exists)
+            {
+                var playerInfo = new List<(string Name, int Score)>();
+
+                foreach (var snapshot in task.Result.Children)
+                {
+                    string name = snapshot.Key;
+                    int score = int.Parse(snapshot.Child("Score").Value.ToString());
+
+                    playerInfo.Add((name, score));
+                }
+
+                OnSuccess?.Invoke(playerInfo);
+            }
+            else
+            {
+                Debug.Log("Failed to retriev data");
             }
         });
     }
