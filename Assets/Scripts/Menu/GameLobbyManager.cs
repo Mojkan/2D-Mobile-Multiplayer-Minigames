@@ -4,13 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public class Player
 {
-    public string Name;
     public int Score;
 
-    public Player(string name, int score)
+    public Player()
     {
-        Name = name;
-        Score = score;
+        Score = 0;
     }
 
     // Convert Player to a dictionary for Firebase compatibility
@@ -18,7 +16,6 @@ public class Player
     {
         return new Dictionary<string, object>
         {
-            { "Name", Name },
             { "Score", Score }
         };
     }
@@ -81,7 +78,7 @@ public class GameLobbyManager : MonoBehaviour
     void OnCreatingLobbySuccess(string lobbyCode)
     {
         // Adds the creator of the lobby
-        Player newPlayer = new Player(FirebaseManager.Instance.savedUsername, 0);
+        Player newPlayer = new Player();
 
         FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
     }
@@ -93,7 +90,7 @@ public class GameLobbyManager : MonoBehaviour
 
     public void JoinLobby(string lobbyCode)
     {
-        Player newPlayer = new Player(FirebaseManager.Instance.savedUsername, 0);
+        Player newPlayer = new Player();
 
         FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
     }

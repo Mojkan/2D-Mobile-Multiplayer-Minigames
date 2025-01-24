@@ -118,9 +118,7 @@ public class FirebaseManager : MonoBehaviour
 
     public void JoinLobby(string lobbyCode, Player player, System.Action OnSuccess, System.Action OnFailure)
     {
-        var playersRef = db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players");
-
-        playersRef.Push().SetValueAsync(player.ToDictionary()).ContinueWithOnMainThread(task =>
+        db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").Child(savedUsername).SetValueAsync(player.ToDictionary()).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
