@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 [System.Serializable]
@@ -44,7 +45,6 @@ public class GameLobby
         Players = new List<Player>();
     }
 }
-
 
 public class GameLobbyManager : MonoBehaviour
 {
@@ -97,12 +97,24 @@ public class GameLobbyManager : MonoBehaviour
 
     void OnJoiningLobbySuccess()
     {
-        lobbyUIManager.EnableLobbyUI();
-        lobbyUIManager.UpdateUserInfoUI();
+        lobbyUIManager.InitializeLobbyUI();
     }
 
     void onJoiningLobbyFailure()
     {
         Debug.Log("Failed to join lobby");
+    }
+
+    public void UpdateLobbyPlayers()
+    {
+        if (lobbyUIManager != null)
+        {
+            lobbyUIManager.UpdateUserInfoUI();
+        }
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("WoodStacking");
     }
 }

@@ -4,6 +4,7 @@ using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
 using System.Collections.Generic;
+using System.Collections;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class FirebaseManager : MonoBehaviour
 
     [HideInInspector] public string savedUsername;
     [HideInInspector] public string savedLobbyCode;
+    [HideInInspector] public int savedMaxPlayers;
     FirebaseAuth auth;
     FirebaseDatabase db;
 
@@ -87,7 +89,7 @@ public class FirebaseManager : MonoBehaviour
     {
         db.RootReference.Child("users").Child(auth.CurrentUser.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            if (task.IsCompleted && !task.IsFaulted)
+            if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
 
@@ -123,6 +125,18 @@ public class FirebaseManager : MonoBehaviour
         {
             if (task.IsCompleted)
             {
+                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("MaxPlayers").GetValueAsync().ContinueWithOnMainThread(task =>
+                {
+                    if (task.IsCompleted)
+                    {
+                        DataSnapshot snapshot = task.Result;
+
+                        savedMaxPlayers = int.Parse(snapshot.GetRawJsonValue());
+                    }
+                });
+
+                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").ValueChanged += LobbyPlayersChanged;
+
                 savedLobbyCode = lobbyCode;
                 OnSuccess?.Invoke();
             }
@@ -137,8 +151,13 @@ public class FirebaseManager : MonoBehaviour
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            if (task.IsCompleted && task.Result.Exists)
+            if (task.IsCompleted)
             {
+                if (task.Result.ChildrenCount >= savedMaxPlayers)
+                {
+                    GameLobbyManager.Instance.StartGame();
+                }
+
                 var playerInfo = new List<(string Name, int Score)>();
 
                 foreach (var snapshot in task.Result.Children)
@@ -156,6 +175,11 @@ public class FirebaseManager : MonoBehaviour
                 Debug.Log("Failed to retriev data");
             }
         });
+    }
+
+    void LobbyPlayersChanged(object sender, ValueChangedEventArgs args)
+    {
+        GameLobbyManager.Instance.UpdateLobbyPlayers();
     }
 
     public void SignOut()

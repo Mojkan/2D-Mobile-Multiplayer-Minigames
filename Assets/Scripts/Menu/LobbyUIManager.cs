@@ -12,13 +12,14 @@ public class LobbyUIManager : MonoBehaviour
     [SerializeField] GameObject userInfoUIPrefab;
     [SerializeField] Transform userInfoUIPrefabParentObject;
 
-    public void EnableLobbyUI()
+    public void InitializeLobbyUI()
     {
         menuUI.SetActive(false);
         JoinLobbyUI.SetActive(false);
         lobbyUI.SetActive(true);
 
         lobbyCodeText.text = "LOBBY CODE: " + FirebaseManager.Instance.savedLobbyCode;
+        UpdateUserInfoUI();
     }
 
     public void UpdateUserInfoUI()
