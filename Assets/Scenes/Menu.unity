@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 57385149}
   - component: {fileID: 57385151}
   - component: {fileID: 57385150}
-  - component: {fileID: 57385152}
   m_Layer: 5
   m_Name: Lobby
   m_TagString: Untagged
@@ -199,24 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57385148}
   m_CullTransparentMesh: 1
---- !u!114 &57385152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 57385148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0de644db2d0044cab65b78c5aa3c7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuUI: {fileID: 585286455}
-  JoinLobbyUI: {fileID: 1762021497}
-  lobbyUI: {fileID: 57385148}
-  lobbyCodeText: {fileID: 1811683142}
-  userInfoUIPrefab: {fileID: 4158649019618176706, guid: 656a2420b383ac640ab0d67d0fff7649, type: 3}
-  userInfoUIPrefabParentObject: {fileID: 57385149}
 --- !u!1 &147140061
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +813,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229782927}
   m_CullTransparentMesh: 1
+--- !u!1 &370978575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370978576}
+  - component: {fileID: 370978577}
+  m_Layer: 0
+  m_Name: LobbyUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370978576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370978575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370978577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370978575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0de644db2d0044cab65b78c5aa3c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuUI: {fileID: 585286455}
+  JoinLobbyUI: {fileID: 1762021497}
+  lobbyUI: {fileID: 57385148}
+  lobbyCodeText: {fileID: 1811683142}
+  userInfoUIPrefab: {fileID: 4158649019618176706, guid: 656a2420b383ac640ab0d67d0fff7649, type: 3}
+  userInfoUIPrefabParentObject: {fileID: 57385149}
 --- !u!1 &584980402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,7 +2113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9e68926bec4f34685c45027d8346c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyUIManager: {fileID: 57385152}
 --- !u!1 &1452270177
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,6 +3110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savedUsername: 
   savedLobbyCode: 
+  savedMaxPlayers: 0
 --- !u!4 &2092215877
 Transform:
   m_ObjectHideFlags: 0
@@ -3237,4 +3268,5 @@ SceneRoots:
   - {fileID: 1452270181}
   - {fileID: 2092215877}
   - {fileID: 1303406094}
+  - {fileID: 370978576}
   - {fileID: 2082590446}

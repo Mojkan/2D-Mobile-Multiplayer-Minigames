@@ -48,7 +48,7 @@ public class GameLobby
 
 public class GameLobbyManager : MonoBehaviour
 {
-    [SerializeField] LobbyUIManager lobbyUIManager;
+    LobbyUIManager lobbyUIManager;
 
     public static GameLobbyManager Instance { get; private set; }
 
@@ -97,6 +97,11 @@ public class GameLobbyManager : MonoBehaviour
 
     void OnJoiningLobbySuccess()
     {
+        if (lobbyUIManager == null)
+        {
+            Debug.Log("Test1");
+            lobbyUIManager = GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
+        }
         lobbyUIManager.InitializeLobbyUI();
     }
 
@@ -107,14 +112,17 @@ public class GameLobbyManager : MonoBehaviour
 
     public void UpdateLobbyPlayers()
     {
-        if (lobbyUIManager != null)
+        if (lobbyUIManager == null)
         {
-            lobbyUIManager.UpdateUserInfoUI();
+            Debug.Log("Test2");
+            lobbyUIManager = GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
         }
+        lobbyUIManager.UpdateUserInfoUI();
     }
 
     public void StartGame()
     {
+        FirebaseManager.Instance.StopListenToLobbyPlayersChanged();
         SceneManager.LoadScene("WoodStacking");
     }
 }

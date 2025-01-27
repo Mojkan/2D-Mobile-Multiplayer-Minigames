@@ -13,6 +13,7 @@ public class FirebaseManager : MonoBehaviour
     [HideInInspector] public string savedUsername;
     [HideInInspector] public string savedLobbyCode;
     [HideInInspector] public int savedMaxPlayers;
+
     FirebaseAuth auth;
     FirebaseDatabase db;
 
@@ -135,7 +136,7 @@ public class FirebaseManager : MonoBehaviour
                     }
                 });
 
-                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").ValueChanged += LobbyPlayersChanged;
+                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").ValueChanged += ListenToLobbyPlayersChanged;
 
                 savedLobbyCode = lobbyCode;
                 OnSuccess?.Invoke();
@@ -177,9 +178,25 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    void LobbyPlayersChanged(object sender, ValueChangedEventArgs args)
+    void ListenToLobbyPlayersChanged(object sender, ValueChangedEventArgs args)
     {
         GameLobbyManager.Instance.UpdateLobbyPlayers();
+    }
+
+    public void StopListenToLobbyPlayersChanged()
+    {
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").ValueChanged -= ListenToLobbyPlayersChanged;
+    }
+
+    public void UpdatePlayerScore(int score, System.Action Onsuccess)
+    {
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).Child("Score").SetValueAsync(score).ContinueWithOnMainThread( task=>
+        {
+            if (task.IsCompleted)
+            {
+                Onsuccess?.Invoke();
+            }
+        });
     }
 
     public void SignOut()

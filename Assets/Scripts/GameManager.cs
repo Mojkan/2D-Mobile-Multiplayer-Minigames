@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float gameTimeLimit;
-    [SerializeField] float maxScoreColor;
     [SerializeField] float woodCountSpeed;
 
     [Header("Reference")]
@@ -65,14 +64,23 @@ public class GameManager : MonoBehaviour
             UpdateScore();
             yield return new WaitForSeconds(woodCountSpeed);
         }
+
+        SendScoreToFirebase();
     }
 
     void UpdateScore()
     {
         points++;
         scoreText.text = points.ToString();
+    }
 
-        float value = points / maxScoreColor;
-        scoreText.color = Color.Lerp(Color.white, Color.red, value);
+    void SendScoreToFirebase()
+    {
+        FirebaseManager.Instance.UpdatePlayerScore(points, SendScoreToFirebaseOnSuccess);
+    }
+
+    void SendScoreToFirebaseOnSuccess()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
