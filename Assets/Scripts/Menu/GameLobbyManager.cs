@@ -50,6 +50,7 @@ public class GameLobbyManager : MonoBehaviour
 {
     LobbyUIManager lobbyUIManager;
     [HideInInspector] public bool isPlayerInLobby;
+    [HideInInspector] public bool isGameRunning;
 
     public static GameLobbyManager Instance { get; private set; }
 
@@ -123,6 +124,7 @@ public class GameLobbyManager : MonoBehaviour
     public void StartGame()
     {
         FirebaseManager.Instance.StopListenToLobbyPlayersChanged();
+        isGameRunning = true;
         Invoke(nameof(LoadNewScene), 2);
     }
 

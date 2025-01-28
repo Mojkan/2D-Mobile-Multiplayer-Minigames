@@ -148,13 +148,13 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure)
+    public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure) // Todo: Fix Start Game conditions
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
-                if (task.Result.ChildrenCount >= savedMaxPlayers)
+                if (!GameLobbyManager.Instance.isGameRunning && task.Result.ChildrenCount >= savedMaxPlayers)
                 {
                     GameLobbyManager.Instance.StartGame();
                 }
