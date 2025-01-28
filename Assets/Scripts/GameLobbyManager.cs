@@ -125,7 +125,7 @@ public class GameLobbyManager : MonoBehaviour
     {
         FirebaseManager.Instance.StopListenToLobbyPlayersChanged();
         isGameRunning = true;
-        Invoke(nameof(LoadNewScene), 2);
+        Invoke(nameof(LoadNewScene), 5);
     }
 
     void LoadNewScene()

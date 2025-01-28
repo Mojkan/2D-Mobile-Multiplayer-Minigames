@@ -8,39 +8,30 @@ public class MenuUIManager : MonoBehaviour
     [SerializeField] GameObject JoinLobbyUI;
     [SerializeField] TMP_InputField lobbyCodeInput;
 
-    [SerializeField] WinnerScoreboardManager winnerScoreboardManager;
-    [SerializeField] GameObject scoreboardLobbyUI;
-
-    void Start()
-    {
-        if (GameLobbyManager.Instance.isPlayerInLobby)
-        {
-            EnableScoreboardLobbyUI();
-        }
-    }
-
-    void EnableScoreboardLobbyUI()
-    {
-        menuUI.SetActive(false);
-        JoinLobbyUI.SetActive(false);
-        scoreboardLobbyUI.SetActive(true);
-        winnerScoreboardManager.InitializeScoreboardLobbyUI();
-    }
-
-    public void EnableEnterLobbyCodeUI()
+    public void EnableEnterLobbyCodeWindow()
     {
         menuUI.SetActive(false);
         JoinLobbyUI.SetActive(true);
     }
 
-    public void DisableEnterLobbyCodeUI()
+    public void DisableEnterLobbyCodeWindow()
     {
         menuUI.SetActive(true);
         JoinLobbyUI.SetActive(false);
     }
 
-    public void SendLobbyCode()
+    public void FindNewLobby()
+    {
+        Debug.Log("Not implemented");
+    }
+
+    public void JoinNewLobby()
     {
         GameLobbyManager.Instance.JoinLobby(lobbyCodeInput.text);
+    }
+
+    public void CreateNewLobby()
+    {
+        GameLobbyManager.Instance.CreateLobby();
     }
 }

@@ -1,33 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WinnerScoreboardManager : MonoBehaviour
+public class LobbyWinnerUIManager : MonoBehaviour
 {
-    [SerializeField] GameObject scoreboardLobbyUI;
-    [SerializeField] TextMeshProUGUI winnerText;
+    [SerializeField] GameObject menuUI;
+    [SerializeField] GameObject lobbyWinnerUI;
+    [SerializeField] TextMeshProUGUI lobbyWinnerText;
+
     [SerializeField] GameObject userInfoUIPrefab;
-    [SerializeField] Transform userInfoUIPrefabParentObject;
+    [SerializeField] Transform userInfoUIPrefabParent;
 
-    public void InitializeScoreboardLobbyUI()
+    public void Start()
     {
-        UpdateUserInfoUI();
+        if (GameLobbyManager.Instance.isGameRunning)
+        {
+            menuUI.SetActive(false);
+            lobbyWinnerUI.SetActive(true);
+            UpdateUserData();
+        }
     }
 
-    public void UpdateUserInfoUI()
+    public void UpdateUserData()
     {
-        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserInfoUISuccess, OnUpdateUserInfoUIFailure);
+        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserDataSuccess, OnUpdateUserDataFailure);
     }
 
-    void OnUpdateUserInfoUISuccess(List<(string name, int score)> players)
+    void OnUpdateUserDataSuccess(List<(string name, int score)> players)
     {
         for (int i = 0; i < players.Count; i++)
         {
             players.Sort((player1, player2) => player2.score.CompareTo(player1.score));
 
             GameObject newUserInfoUI = Instantiate(userInfoUIPrefab);
-            newUserInfoUI.transform.SetParent(userInfoUIPrefabParentObject);
+            newUserInfoUI.transform.SetParent(userInfoUIPrefabParent);
 
             Transform firstChild = newUserInfoUI.transform.GetChild(0);
             Transform secondChild = newUserInfoUI.transform.GetChild(1);
@@ -39,7 +45,7 @@ public class WinnerScoreboardManager : MonoBehaviour
         }
     }
 
-    void OnUpdateUserInfoUIFailure()
+    void OnUpdateUserDataFailure()
     {
         Debug.Log("Failed updating lobby UI");
     }

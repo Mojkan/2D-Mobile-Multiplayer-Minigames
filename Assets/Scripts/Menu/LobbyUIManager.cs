@@ -9,8 +9,9 @@ public class LobbyUIManager : MonoBehaviour
     [SerializeField] GameObject JoinLobbyUI;
     [SerializeField] GameObject lobbyUI;
     [SerializeField] TextMeshProUGUI lobbyCodeText;
+
     [SerializeField] GameObject userInfoUIPrefab;
-    [SerializeField] Transform userInfoUIPrefabParentObject;
+    [SerializeField] Transform userInfoUIPrefabParent;
 
     public void InitializeLobbyUI()
     {
@@ -24,15 +25,15 @@ public class LobbyUIManager : MonoBehaviour
 
     public void UpdateUserInfoUI()
     {
-        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserInfoUISuccess, OnUpdateUserInfoUIFailure);
+        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserDataSuccess, OnUpdateUserDataFailure);
     }
 
-    void OnUpdateUserInfoUISuccess(List<(string name, int score)> players)
+    void OnUpdateUserDataSuccess(List<(string name, int score)> players)
     {
         for (int i = 0; i < players.Count; i++)
         {
             GameObject newUserInfoUI = Instantiate(userInfoUIPrefab);
-            newUserInfoUI.transform.SetParent(userInfoUIPrefabParentObject);
+            newUserInfoUI.transform.SetParent(userInfoUIPrefabParent);
 
             Transform firstChild = newUserInfoUI.transform.GetChild(0);
             Transform secondChild = newUserInfoUI.transform.GetChild(1);
@@ -44,7 +45,7 @@ public class LobbyUIManager : MonoBehaviour
         }
     }
 
-    void OnUpdateUserInfoUIFailure()
+    void OnUpdateUserDataFailure()
     {
         Debug.Log("Failed updating lobby UI");
     }

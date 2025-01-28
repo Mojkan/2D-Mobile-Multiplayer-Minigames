@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 113445609}
   - component: {fileID: 113445610}
   m_Layer: 0
-  m_Name: WinnerScoarboardManager
+  m_Name: LobbyWinnerUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,10 +242,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ca1a9936f11964691c47fcce105a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreboardLobbyUI: {fileID: 1382079947}
-  winnerText: {fileID: 641287656}
+  menuUI: {fileID: 585286455}
+  lobbyWinnerUI: {fileID: 1382079947}
+  lobbyWinnerText: {fileID: 641287656}
   userInfoUIPrefab: {fileID: 4158649019618176706, guid: 656a2420b383ac640ab0d67d0fff7649, type: 3}
-  userInfoUIPrefabParentObject: {fileID: 1382079948}
+  userInfoUIPrefabParent: {fileID: 1382079948}
 --- !u!1 &147140061
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +463,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164943541}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1452270182}
+        m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
+        m_MethodName: FindNewLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &164943541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,7 +603,6 @@ GameObject:
   - component: {fileID: 174275209}
   - component: {fileID: 174275208}
   - component: {fileID: 174275207}
-  - component: {fileID: 174275210}
   m_Layer: 5
   m_Name: CancelGameButton
   m_TagString: Untagged
@@ -662,9 +674,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 174275210}
+      - m_Target: {fileID: 1452270182}
         m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
-        m_MethodName: DisableEnterLobbyCodeUI
+        m_MethodName: DisableEnterLobbyCodeWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -712,23 +724,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174275204}
   m_CullTransparentMesh: 1
---- !u!114 &174275210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174275204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de5cfb49c595574e8a5b310822b30fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuUI: {fileID: 585286455}
-  JoinLobbyUI: {fileID: 1762021497}
-  lobbyCodeInput: {fileID: 1770937419}
-  winnerScoreboardManager: {fileID: 0}
-  scoreboardLobbyUI: {fileID: 0}
 --- !u!1 &229782927
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +983,7 @@ MonoBehaviour:
   lobbyUI: {fileID: 57385148}
   lobbyCodeText: {fileID: 1811683142}
   userInfoUIPrefab: {fileID: 4158649019618176706, guid: 656a2420b383ac640ab0d67d0fff7649, type: 3}
-  userInfoUIPrefabParentObject: {fileID: 57385149}
+  userInfoUIPrefabParent: {fileID: 57385149}
 --- !u!1 &584980402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,8 +1069,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130
-  m_fontSizeBase: 130
+  m_fontSize: 180
+  m_fontSizeBase: 180
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1455,7 +1450,6 @@ GameObject:
   - component: {fileID: 856955819}
   - component: {fileID: 856955818}
   - component: {fileID: 856955817}
-  - component: {fileID: 856955820}
   m_Layer: 5
   m_Name: JoinGameButton
   m_TagString: Untagged
@@ -1527,9 +1521,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 856955820}
+      - m_Target: {fileID: 1452270182}
         m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
-        m_MethodName: EnableEnterLobbyCodeUI
+        m_MethodName: EnableEnterLobbyCodeWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1577,23 +1571,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856955814}
   m_CullTransparentMesh: 1
---- !u!114 &856955820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856955814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de5cfb49c595574e8a5b310822b30fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuUI: {fileID: 585286455}
-  JoinLobbyUI: {fileID: 1762021497}
-  lobbyCodeInput: {fileID: 1770937419}
-  winnerScoreboardManager: {fileID: 113445610}
-  scoreboardLobbyUI: {fileID: 1382079947}
 --- !u!1 &998174595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2171,6 @@ GameObject:
   - component: {fileID: 1203694453}
   - component: {fileID: 1203694452}
   - component: {fileID: 1203694451}
-  - component: {fileID: 1203694454}
   m_Layer: 5
   m_Name: JoinGameButton
   m_TagString: Untagged
@@ -2266,9 +2242,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203694454}
+      - m_Target: {fileID: 1452270182}
         m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
-        m_MethodName: SendLobbyCode
+        m_MethodName: JoinNewLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2316,23 +2292,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203694448}
   m_CullTransparentMesh: 1
---- !u!114 &1203694454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203694448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de5cfb49c595574e8a5b310822b30fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuUI: {fileID: 585286455}
-  JoinLobbyUI: {fileID: 1762021497}
-  lobbyCodeInput: {fileID: 1770937419}
-  winnerScoreboardManager: {fileID: 0}
-  scoreboardLobbyUI: {fileID: 0}
 --- !u!1 &1303406093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,6 +2337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerInLobby: 0
+  isGameRunning: 0
 --- !u!1 &1382079947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,7 +2350,7 @@ GameObject:
   - component: {fileID: 1382079950}
   - component: {fileID: 1382079949}
   m_Layer: 5
-  m_Name: WinnerScoreboard
+  m_Name: LobbyWinner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2466,6 +2426,7 @@ GameObject:
   - component: {fileID: 1452270180}
   - component: {fileID: 1452270179}
   - component: {fileID: 1452270178}
+  - component: {fileID: 1452270182}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2559,6 +2520,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1452270182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452270177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de5cfb49c595574e8a5b310822b30fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuUI: {fileID: 585286455}
+  JoinLobbyUI: {fileID: 1762021497}
+  lobbyCodeInput: {fileID: 1770937419}
 --- !u!1 &1685346618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,7 +2571,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.6415094, g: 0.49157056, b: 0.29957277, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3551,9 +3527,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1303406095}
-        m_TargetAssemblyTypeName: GameLobbyManager, Assembly-CSharp
-        m_MethodName: CreateLobby
+      - m_Target: {fileID: 1452270182}
+        m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
+        m_MethodName: CreateNewLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
