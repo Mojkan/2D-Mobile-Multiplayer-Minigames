@@ -49,6 +49,7 @@ public class GameLobby
 public class GameLobbyManager : MonoBehaviour
 {
     LobbyUIManager lobbyUIManager;
+    [HideInInspector] public bool isPlayerInLobby;
 
     public static GameLobbyManager Instance { get; private set; }
 
@@ -95,8 +96,9 @@ public class GameLobbyManager : MonoBehaviour
         FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
     }
 
-    void OnJoiningLobbySuccess() // This method should not be called in game
+    void OnJoiningLobbySuccess()
     {
+        isPlayerInLobby = true;
         if (lobbyUIManager == null)
         {
             lobbyUIManager = GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
@@ -111,7 +113,7 @@ public class GameLobbyManager : MonoBehaviour
 
     public void UpdateLobbyPlayers()
     {
-        if (lobbyUIManager == null) // This method should not be called in game
+        if (lobbyUIManager == null)
         {
             lobbyUIManager = GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
         }
