@@ -136,7 +136,7 @@ public class FirebaseManager : MonoBehaviour
                     }
                 });
 
-                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").ValueChanged += ListenToLobbyPlayersChanged;
+                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").ChildAdded += ListenToLobbyPlayersChanged;
 
                 savedLobbyCode = lobbyCode;
                 OnSuccess?.Invoke();
@@ -178,14 +178,14 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    void ListenToLobbyPlayersChanged(object sender, ValueChangedEventArgs args)
+    void ListenToLobbyPlayersChanged(object sender, ChildChangedEventArgs args)
     {
         GameLobbyManager.Instance.UpdateLobbyPlayers();
     }
 
     public void StopListenToLobbyPlayersChanged()
     {
-        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").ValueChanged -= ListenToLobbyPlayersChanged;
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").ChildAdded -= ListenToLobbyPlayersChanged;
     }
 
     public void UpdatePlayerScore(int score, System.Action Onsuccess)

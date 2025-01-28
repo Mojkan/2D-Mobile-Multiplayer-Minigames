@@ -95,11 +95,10 @@ public class GameLobbyManager : MonoBehaviour
         FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
     }
 
-    void OnJoiningLobbySuccess()
+    void OnJoiningLobbySuccess() // This method should not be called in game
     {
         if (lobbyUIManager == null)
         {
-            Debug.Log("Test1");
             lobbyUIManager = GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
         }
         lobbyUIManager.InitializeLobbyUI();
@@ -112,9 +111,8 @@ public class GameLobbyManager : MonoBehaviour
 
     public void UpdateLobbyPlayers()
     {
-        if (lobbyUIManager == null)
+        if (lobbyUIManager == null) // This method should not be called in game
         {
-            Debug.Log("Test2");
             lobbyUIManager = GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
         }
         lobbyUIManager.UpdateUserInfoUI();
@@ -123,6 +121,11 @@ public class GameLobbyManager : MonoBehaviour
     public void StartGame()
     {
         FirebaseManager.Instance.StopListenToLobbyPlayersChanged();
+        Invoke(nameof(LoadNewScene), 2);
+    }
+
+    void LoadNewScene()
+    {
         SceneManager.LoadScene("WoodStacking");
     }
 }
