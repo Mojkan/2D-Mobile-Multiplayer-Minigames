@@ -4,7 +4,6 @@ using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
 using System.Collections.Generic;
-using System.Collections;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -32,6 +31,7 @@ public class FirebaseManager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value; // FIXES TARGET FRAMERATE TO SCREENS REFRESHRATE
         InitializeFirebase();
     }
 
@@ -144,13 +144,16 @@ public class FirebaseManager : MonoBehaviour
                         DataSnapshot snapshot = task.Result;
 
                         savedMaxPlayers = int.Parse(snapshot.GetRawJsonValue());
+                        savedLobbyCode = lobbyCode;
+
+                        StartListenToLobbyPlayersChanged();
+                        OnSuccess?.Invoke();
+                    }
+                    else
+                    {
+                        OnFailure?.Invoke();
                     }
                 });
-
-                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").ChildAdded += ListenToLobbyPlayersChanged;
-
-                savedLobbyCode = lobbyCode;
-                OnSuccess?.Invoke();
             }
             else
             {
@@ -159,17 +162,12 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure) // Todo: Fix Start Game conditions
+    public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure)
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
-                if (!GameLobbyManager.Instance.isGameRunning && task.Result.ChildrenCount >= savedMaxPlayers)
-                {
-                    GameLobbyManager.Instance.StartGame();
-                }
-
                 var playerInfo = new List<(string Name, int Score)>();
 
                 foreach (var snapshot in task.Result.Children)
@@ -184,19 +182,39 @@ public class FirebaseManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Failed to retriev data");
+                OnFailure?.Invoke();
             }
         });
     }
 
-    void ListenToLobbyPlayersChanged(object sender, ChildChangedEventArgs args)
+    public void StartListenToLobbyPlayersChanged()
     {
-        GameLobbyManager.Instance.UpdateLobbyPlayers();
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").ChildAdded += ListenToLobbyPlayersChanged;
     }
 
     public void StopListenToLobbyPlayersChanged()
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").ChildAdded -= ListenToLobbyPlayersChanged;
+    }
+
+    void ListenToLobbyPlayersChanged(object sender, ChildChangedEventArgs args)
+    {
+        GameLobbyManager.Instance.UpdateLobbyPlayers();
+        CheckIfGameShouldStart();
+    }
+
+    void CheckIfGameShouldStart()
+    {
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                if (task.Result.ChildrenCount >= savedMaxPlayers)
+                {
+                    GameLobbyManager.Instance.StartGame();
+                }
+            }
+        });
     }
 
     public void UpdatePlayerScore(int score, System.Action Onsuccess)

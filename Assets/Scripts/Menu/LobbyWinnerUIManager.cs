@@ -46,7 +46,6 @@ public class LobbyWinnerUIManager : MonoBehaviour
 
         lobbyWinnerText.text = "Winner! " + players[0].name;
         GameLobbyManager.Instance.isGameRunning = false;
-        GameLobbyManager.Instance.isPlayerInLobby = false;
     }
 
     void OnUpdateUserDataFailure()

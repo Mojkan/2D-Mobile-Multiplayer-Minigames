@@ -49,7 +49,6 @@ public class GameLobby
 public class GameLobbyManager : MonoBehaviour
 {
     [SerializeField] LobbyUIManager lobbyUIManager;
-    [HideInInspector] public bool isPlayerInLobby;
     [HideInInspector] public bool isGameRunning;
 
     public static GameLobbyManager Instance { get; private set; }
@@ -82,7 +81,7 @@ public class GameLobbyManager : MonoBehaviour
         // Adds the creator of the lobby
         Player newPlayer = new Player();
 
-        FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
+        FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, OnJoiningLobbyFailure);
     }
 
     void OnCreatingLobbyFail()
@@ -94,18 +93,17 @@ public class GameLobbyManager : MonoBehaviour
     {
         Player newPlayer = new Player();
 
-        FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, onJoiningLobbyFailure);
+        FirebaseManager.Instance.JoinLobby(lobbyCode, newPlayer, OnJoiningLobbySuccess, OnJoiningLobbyFailure);
     }
 
     void OnJoiningLobbySuccess()
     {
-        isPlayerInLobby = true;
         lobbyUIManager ??= GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
 
         lobbyUIManager.InitializeLobbyUI();
     }
 
-    void onJoiningLobbyFailure()
+    void OnJoiningLobbyFailure()
     {
         Debug.Log("Failed to join lobby");
     }
