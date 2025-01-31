@@ -43,10 +43,20 @@ public class LobbyWinnerUIManager : MonoBehaviour
             newUserInfoUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -630 - (i * 230), 0);
             newUserInfoUI.GetComponent<RectTransform>().localScale = Vector3.one;
         }
+
+        lobbyWinnerText.text = "Winner! " + players[0].name;
+        GameLobbyManager.Instance.isGameRunning = false;
+        GameLobbyManager.Instance.isPlayerInLobby = false;
     }
 
     void OnUpdateUserDataFailure()
     {
         Debug.Log("Failed updating lobby UI");
+    }
+
+    public void DisableLobbyWinnerUI()
+    {
+        menuUI.SetActive(true);
+        lobbyWinnerUI.SetActive(false);
     }
 }
