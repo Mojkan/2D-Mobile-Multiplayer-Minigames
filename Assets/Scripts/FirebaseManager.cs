@@ -17,6 +17,7 @@ public class FirebaseManager : MonoBehaviour
     FirebaseAuth auth;
     FirebaseDatabase db;
 
+    #region FireBase Startup
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -49,7 +50,9 @@ public class FirebaseManager : MonoBehaviour
             Debug.Log("Firebase initialized successfully.");
         });
     }
+    #endregion
 
+    #region Firebase AccountManagement
     public void RegisterNewUser(string email, string password, string userProfile, System.Action onSuccess, System.Action<string> onFailure)
     {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
@@ -86,6 +89,14 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
+    public void SignOut()
+    {
+        auth.SignOut();
+        Debug.Log("User signed out");
+    }
+    #endregion
+
+    #region Firebase Lobby Management
     public void GetUsername(System.Action<string> onPlayerNameLoaded)
     {
         db.RootReference.Child("users").Child(auth.CurrentUser.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
@@ -198,10 +209,5 @@ public class FirebaseManager : MonoBehaviour
             }
         });
     }
-
-    public void SignOut()
-    {
-        auth.SignOut();
-        Debug.Log("User signed out");
-    }
+    #endregion
 }
