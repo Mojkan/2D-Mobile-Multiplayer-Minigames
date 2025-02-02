@@ -65,9 +65,9 @@ public class GameLobbyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void CreateLobby()
+    public void CreateLobby(int maxPlayers)
     {
-        GameLobby newLobby = new GameLobby(2);
+        GameLobby newLobby = new GameLobby(maxPlayers);
 
         string newLobbyJson = JsonUtility.ToJson(newLobby);
 
