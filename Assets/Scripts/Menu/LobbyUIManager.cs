@@ -30,6 +30,14 @@ public class LobbyUIManager : MonoBehaviour
 
     void OnUpdateUserDataSuccess(List<(string name, int score)> players)
     {
+        foreach(Transform OldUserUIObject in userInfoUIPrefabParent)
+        {
+            if (OldUserUIObject.name == "PlayerNameAndScore(Clone)")
+            {
+                Destroy(OldUserUIObject.gameObject);
+            }
+        }
+
         for (int i = 0; i < players.Count; i++)
         {
             GameObject newUserInfoUI = Instantiate(userInfoUIPrefab);
