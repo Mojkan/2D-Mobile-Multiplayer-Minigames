@@ -171,8 +171,8 @@ MonoBehaviour:
   ySpawnPos: 2
   cameraSpeed: 2
   cam: {fileID: 519420031}
-  woodPrefab: {fileID: 8417998310336698053, guid: e3e34a27e422a8a44a85591dc00a3e9b, type: 3}
   gameManager: {fileID: 643233613}
+  woodObjectPool: {fileID: 703296883}
   currentWood: {fileID: 0}
 --- !u!1 &107894812
 GameObject:
@@ -647,6 +647,52 @@ MonoBehaviour:
   timerText: {fileID: 1313578432}
   scoreText: {fileID: 2057815551}
   currentGameState: 0
+--- !u!1 &703296881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703296882}
+  - component: {fileID: 703296883}
+  m_Layer: 0
+  m_Name: WoodObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &703296882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703296881}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &703296883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703296881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27830bc9485f9514e986a3719244335a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodPrefab: {fileID: 8417998310336698053, guid: e3e34a27e422a8a44a85591dc00a3e9b, type: 3}
+  woodPoolSize: 20
 --- !u!1 &748337183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,6 +1424,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 748337187}
   - {fileID: 340730635}
+  - {fileID: 703296882}
   - {fileID: 89193811}
   - {fileID: 643233612}
   - {fileID: 404731637}

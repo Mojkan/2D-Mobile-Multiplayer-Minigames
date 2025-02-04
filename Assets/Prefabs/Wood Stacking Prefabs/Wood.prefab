@@ -205,7 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeedHorizontal: 5
-  gravityStrength: 9.82
   rb2D: {fileID: 6620474427175096557}
 --- !u!114 &-8027806903983037612
 MonoBehaviour:
@@ -219,4 +218,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42e32dd1dda7b74fa0745d859e984a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  woodMovement: {fileID: 2452572232074810013}
   destroyHeight: -4.5

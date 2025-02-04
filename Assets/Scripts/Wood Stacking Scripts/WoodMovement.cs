@@ -88,4 +88,12 @@ public class WoodMovement : MonoBehaviour
             }
         }
     }
+
+    public void ResetWood()
+    {
+        this.enabled = true;
+        rb2D.gravityScale = 0;
+        transform.rotation = Quaternion.Euler(0, 0, 90);
+        woodDropped = false;
+    }
 }

@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < wood.Length; i++)
         {
-            Destroy(wood[i]);
+            wood[i].SetActive(false);
             UpdateScore();
             yield return new WaitForSeconds(woodCountSpeed);
         }
