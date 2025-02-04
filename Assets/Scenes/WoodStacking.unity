@@ -643,7 +643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimeLimit: 30
-  maxScoreColor: 18
   woodCountSpeed: 0.15
   timerText: {fileID: 1313578432}
   scoreText: {fileID: 2057815551}
@@ -1305,7 +1304,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4282122028
-  m_fontColor: {r: 0.17295581, g: 1, b: 0.23036319, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

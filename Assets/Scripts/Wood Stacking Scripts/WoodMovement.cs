@@ -4,14 +4,12 @@ public class WoodMovement : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float moveSpeedHorizontal;
-    [SerializeField] float gravityStrength;
 
     [Header("Reference")]
     [SerializeField] Rigidbody2D rb2D;
     WoodSpawner woodSpawner;
     GameManager gameManager;
 
-    float fallSpeed;
     bool woodDropped;
 
     void Start()
@@ -71,9 +69,7 @@ public class WoodMovement : MonoBehaviour
     {
         if (woodDropped)
         {
-            fallSpeed += gravityStrength * Time.deltaTime;
-
-            rb2D.transform.position += new Vector3(0, -fallSpeed * Time.deltaTime, 0);
+            rb2D.gravityScale = 1;
         }
     }
 
@@ -81,15 +77,12 @@ public class WoodMovement : MonoBehaviour
     {
         if (woodDropped)
         {
-            RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.2505f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
-            RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(0.25f, -0.2505f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
-            RaycastHit2D hit3 = Physics2D.Raycast(transform.position + new Vector3(-0.25f, -0.2505f, 0), Vector2.down, fallSpeed * Time.deltaTime, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(0.25f, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit3 = Physics2D.Raycast(transform.position + new Vector3(-0.25f, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
 
             if (hit1.collider != null || hit2.collider != null || hit3.collider != null)
             {
-                rb2D.velocity = Vector2.zero;
-                rb2D.gravityScale = 1;
-
                 woodSpawner.SpawnNewWood();
                 this.enabled = false;
             }
