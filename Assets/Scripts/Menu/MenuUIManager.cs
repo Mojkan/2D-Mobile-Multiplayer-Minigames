@@ -60,6 +60,7 @@ public class MenuUIManager : MonoBehaviour
 
     public void CreateNewLobby()
     {
+        CreateLobbyUI.SetActive(false);
         GameLobbyManager.Instance.CreateLobby((int)LobbyMaxPlayersInput.value);
     }
 }
