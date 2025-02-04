@@ -162,6 +162,11 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
+    public void QuitLobby()
+    {
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).RemoveValueAsync().ContinueWith(task =>{});
+    }
+
     public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure)
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>

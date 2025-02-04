@@ -57,4 +57,11 @@ public class LobbyUIManager : MonoBehaviour
     {
         Debug.Log("Failed updating lobby UI");
     }
+
+    public void DisableLobbyUI()
+    {
+        FirebaseManager.Instance.QuitLobby();
+        menuUI.SetActive(true);
+        lobbyUI.SetActive(false);
+    }
 }
