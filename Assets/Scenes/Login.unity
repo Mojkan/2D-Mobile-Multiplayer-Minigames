@@ -2740,6 +2740,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6694cf4c1a03ad1478df37e9770b1c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savedUsername: 
+  savedLobbyCode: 
+  savedMaxPlayers: 0
 --- !u!1 &1076150017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,7 +2794,7 @@ GameObject:
   - component: {fileID: 1096793106}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3162,6 +3165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emailInput: {fileID: 265016613}
   passwordInput: {fileID: 846978296}
+  errorPrefab: {fileID: 8094870041214310037, guid: c5908594bb1e71446a936f67a5acc3ce, type: 3}
 --- !u!1 &1184044138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3713,6 +3717,7 @@ MonoBehaviour:
   emailInput: {fileID: 1225095979}
   passwordInput: {fileID: 968433850}
   userNameInput: {fileID: 776181861}
+  errorPrefab: {fileID: 8094870041214310037, guid: c5908594bb1e71446a936f67a5acc3ce, type: 3}
 --- !u!1 &1698472705
 GameObject:
   m_ObjectHideFlags: 0

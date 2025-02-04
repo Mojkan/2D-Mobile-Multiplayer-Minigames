@@ -13,6 +13,7 @@ public class Register : MonoBehaviour
     [SerializeField] TMP_InputField emailInput;
     [SerializeField] TMP_InputField passwordInput;
     [SerializeField] TMP_InputField userNameInput;
+    [SerializeField] GameObject errorPrefab;
 
     public void RegisterUser()
     {
@@ -33,6 +34,7 @@ public class Register : MonoBehaviour
 
     private void OnRegisterFailure(string error)
     {
-        Debug.LogError("Sign-in failed: " + error);
+        GameObject newErrorPrefab = Instantiate(errorPrefab);
+        newErrorPrefab.GetComponent<ErrorText>().DisplayErrorText("Register failed!", 3, 970);
     }
 }

@@ -6,6 +6,7 @@ public class Login : MonoBehaviour
 {
     [SerializeField] TMP_InputField emailInput;
     [SerializeField] TMP_InputField passwordInput;
+    [SerializeField] GameObject errorPrefab;
 
     public void SignInUser()
     {
@@ -20,6 +21,7 @@ public class Login : MonoBehaviour
 
     private void OnSignInFailure(string error)
     {
-        Debug.LogError("Sign-in failed: " + error);
+        GameObject newErrorPrefab = Instantiate(errorPrefab);
+        newErrorPrefab.GetComponent<ErrorText>().DisplayErrorText("Sign in failed!", 3, 900);
     }
 }
