@@ -22,6 +22,7 @@ public class WoodSpawner : MonoBehaviour
 
     void Start()
     {
+        Physics2D.gravity = new Vector3(0, -9.81f, 0); // Fixes no gravity bug when replaying the game
         spawnStart = ySpawnPos;
         cameraStartPos = cam.transform.position;
         cameraStartSize = cam.orthographicSize;
