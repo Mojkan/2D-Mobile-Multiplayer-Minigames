@@ -86,7 +86,7 @@ public class GameLobbyManager : MonoBehaviour
 
     void OnCreatingLobbyFail()
     {
-        Debug.Log("Failed to create lobby");
+        ErrorHandler.Instance.DisplayErrorMessage("Failed to create lobby", 700, 3);
     }
 
     public void JoinLobby(string lobbyCode)
@@ -103,7 +103,7 @@ public class GameLobbyManager : MonoBehaviour
 
     void OnJoiningLobbyFailure()
     {
-        Debug.Log("Failed to join lobby");
+        ErrorHandler.Instance.DisplayErrorMessage("Failed to join lobby", 700, 3);
     }
 
     public void UpdateLobbyPlayers()

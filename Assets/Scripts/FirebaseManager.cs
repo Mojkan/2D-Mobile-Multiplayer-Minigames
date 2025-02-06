@@ -4,6 +4,7 @@ using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
 using System.Collections.Generic;
+using System;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class FirebaseManager : MonoBehaviour
     #endregion
 
     #region Firebase AccountManagement
-    public void RegisterNewUser(string email, string password, string userProfile, System.Action onSuccess, System.Action<string> onFailure)
+    public void RegisterNewUser(string email, string password, string userProfile, Action onSuccess, Action<string> onFailure)
     {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
@@ -72,7 +73,7 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void SignIn(string email, string password, System.Action onSuccess, System.Action<string> onFailure)
+    public void SignIn(string email, string password, Action onSuccess, Action<string> onFailure)
     {
         Debug.Log("Starting Sign-In");
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
@@ -97,7 +98,7 @@ public class FirebaseManager : MonoBehaviour
     #endregion
 
     #region Firebase Lobby Management
-    public void GetUsername(System.Action<string> onPlayerNameLoaded)
+    public void GetUsername(Action<string> onPlayerNameLoaded)
     {
         db.RootReference.Child("users").Child(auth.CurrentUser.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -116,7 +117,7 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void CreateNewLobby(string lobbyCode, string lobbyData, System.Action<string> OnSuccess, System.Action OnFailure)
+    public void CreateNewLobby(string lobbyCode, string lobbyData, Action<string> OnSuccess, Action OnFailure)
     {
         db.RootReference.Child("gamelobbies").Child(lobbyCode).SetRawJsonValueAsync(lobbyData).ContinueWithOnMainThread(task =>
         {
@@ -131,7 +132,7 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void JoinLobby(string lobbyCode, Player player, System.Action OnSuccess, System.Action OnFailure)
+    public void JoinLobby(string lobbyCode, Player player, Action OnSuccess, Action OnFailure)
     {
         db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").Child(savedUsername).SetValueAsync(player.ToDictionary()).ContinueWithOnMainThread(task =>
         {
@@ -167,7 +168,7 @@ public class FirebaseManager : MonoBehaviour
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).RemoveValueAsync().ContinueWith(task =>{});
     }
 
-    public void GetLobbyUserInfo(System.Action<List<(string Name, int Score)>> OnSuccess, System.Action OnFailure)
+    public void GetLobbyUserInfo(Action<List<(string Name, int Score)>> OnSuccess, Action OnFailure)
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -222,7 +223,7 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void UpdatePlayerScore(int score, System.Action Onsuccess)
+    public void UpdatePlayerScore(int score, Action Onsuccess)
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).Child("Score").SetValueAsync(score).ContinueWithOnMainThread( task=>
         {

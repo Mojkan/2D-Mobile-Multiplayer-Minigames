@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +5,11 @@ public class ErrorText : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI errorText;
 
-    public void DisplayErrorText(string errorMessage, int duration, float yPosition)
+    [HideInInspector] public string errorMessage;
+    [HideInInspector] public float duration;
+    [HideInInspector] public float yPosition;
+
+    void Start()
     {
         RectTransform recTransform = gameObject.GetComponent<RectTransform>();
         recTransform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
