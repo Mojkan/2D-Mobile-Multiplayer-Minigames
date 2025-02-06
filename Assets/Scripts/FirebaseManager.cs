@@ -224,15 +224,9 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void UpdatePlayerScore(int score, Action Onsuccess)
+    public void UpdatePlayerScore(int score)
     {
-        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).Child("Score").SetValueAsync(score).ContinueWithOnMainThread( task=>
-        {
-            if (task.IsCompleted)
-            {
-                Onsuccess?.Invoke();
-            }
-        });
+        db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).Child("Score").SetValueAsync(score).ContinueWith( task=> { });
     }
     #endregion
 }

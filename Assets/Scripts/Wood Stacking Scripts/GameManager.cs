@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float woodCountSpeed;
 
     [Header("Reference")]
+    [SerializeField] GameObject FadeOutUI;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] TextMeshProUGUI scoreText;
 
@@ -77,12 +78,14 @@ public class GameManager : MonoBehaviour
 
     void SendScoreToFirebase()
     {
-        FirebaseManager.Instance.UpdatePlayerScore(points, SendScoreToFirebaseOnSuccess);
+        FirebaseManager.Instance.UpdatePlayerScore(points);
+        GameLobbyManager.Instance.isGameCompleted = true;
+        FadeOutUI.SetActive(true);
+        Invoke(nameof(LoadMenuScene), 2);
     }
 
-    void SendScoreToFirebaseOnSuccess()
+    void LoadMenuScene()
     {
-        GameLobbyManager.Instance.isGameCompleted = true;
         SceneManager.LoadScene("Menu");
     }
 }
