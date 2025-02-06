@@ -114,7 +114,8 @@ public class GameLobbyManager : MonoBehaviour
     public void StartGame()
     {
         FirebaseManager.Instance.StopListenToLobbyPlayersChanged();
-        Invoke(nameof(LoadNewScene), 5);
+        lobbyUIManager.FadeOutUI();
+        Invoke(nameof(LoadNewScene), 2);
     }
 
     void LoadNewScene()

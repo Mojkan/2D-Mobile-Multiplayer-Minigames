@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +11,8 @@ public class LobbyUIManager : MonoBehaviour
 
     [SerializeField] GameObject userInfoUIPrefab;
     [SerializeField] Transform userInfoUIPrefabParent;
+
+    [SerializeField] GameObject fadeOutUI;
 
     void Start()
     {
@@ -68,5 +69,10 @@ public class LobbyUIManager : MonoBehaviour
         FirebaseManager.Instance.QuitLobby();
         menuUI.SetActive(true);
         lobbyUI.SetActive(false);
+    }
+
+    public void FadeOutUI()
+    {
+        fadeOutUI.SetActive(true);
     }
 }
