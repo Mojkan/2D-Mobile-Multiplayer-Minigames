@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -8027806903983037612}
   m_Layer: 3
   m_Name: Wood
-  m_TagString: Wood
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +206,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeedHorizontal: 5
   rb2D: {fileID: 6620474427175096557}
+  woodSpawner: {fileID: 0}
+  gameManager: {fileID: 0}
+  woodDropped: 0
 --- !u!114 &-8027806903983037612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,3 +223,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   woodMovement: {fileID: 2452572232074810013}
   destroyHeight: -4.5
+  woodObjectPool: {fileID: 0}

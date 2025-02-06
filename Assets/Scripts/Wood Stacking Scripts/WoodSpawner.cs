@@ -12,7 +12,6 @@ public class WoodSpawner : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] GameManager gameManager;
     [SerializeField] WoodObjectPool woodObjectPool;
-    [HideInInspector] public GameObject currentWood;
 
     Vector3 cameraStartPos;
     float cameraStartSize;
@@ -22,7 +21,6 @@ public class WoodSpawner : MonoBehaviour
 
     void Start()
     {
-        Physics2D.gravity = new Vector3(0, -9.81f, 0); // Fixes no gravity bug when replaying the game
         spawnStart = ySpawnPos;
         cameraStartPos = cam.transform.position;
         cameraStartSize = cam.orthographicSize;
@@ -48,8 +46,12 @@ public class WoodSpawner : MonoBehaviour
         ySpawnPos = spawnStart + woodCount / 2;
         Vector2 woodSpawnPos = new Vector2(Random.Range(minXSpawnPos, maxXSpawnPos), ySpawnPos);
 
-        currentWood = woodObjectPool.GetWood();
-        currentWood.transform.position = woodSpawnPos;
+        GameObject newWood = woodObjectPool.GetWood();
+        newWood.transform.position = woodSpawnPos;
+
+        newWood.GetComponent<WoodDestroy>().woodObjectPool = woodObjectPool;
+        newWood.GetComponent<WoodMovement>().gameManager = gameManager;
+        newWood.GetComponent<WoodMovement>().woodSpawner = this;
     }
 
     void CountWood()

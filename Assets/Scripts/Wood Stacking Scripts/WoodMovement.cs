@@ -7,48 +7,43 @@ public class WoodMovement : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] Rigidbody2D rb2D;
-    WoodSpawner woodSpawner;
-    GameManager gameManager;
-
-    bool woodDropped;
+    [HideInInspector] public WoodSpawner woodSpawner;
+    [HideInInspector] public GameManager gameManager;
+    [HideInInspector] public bool woodDropped;
 
     void Start()
     {
-        woodSpawner = GameObject.Find("WoodSpawner").GetComponent<WoodSpawner>();    
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         moveSpeedHorizontal = Random.Range(0f, 1f) > 0.5f ? moveSpeedHorizontal : -moveSpeedHorizontal;
     }
 
     void Update()
     {
-        if (gameManager.currentGameState != GameManager.GameState.running && !woodDropped)
+        if (!woodDropped && gameManager.currentGameState == GameManager.GameState.end)
         {
             Destroy(gameObject);
         }
 
-        GetInput();
-        AddHorizontalMovment();
-        AddVerticalMovment();
+        CheckInput();
+        AddMovement();
         CheckWoodLanding();
     }
 
-    void GetInput()
+    void CheckInput()
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             woodDropped = true;
-            woodSpawner.currentWood = null;
+            gameObject.tag = "Wood";
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             woodDropped = true;
-            woodSpawner.currentWood = null;
+            gameObject.tag = "Wood";
         }
     }
 
-    void AddHorizontalMovment()
+    void AddMovement()
     {
         if (!woodDropped)
         {
@@ -63,11 +58,7 @@ public class WoodMovement : MonoBehaviour
 
             rb2D.transform.position += new Vector3(moveSpeedHorizontal * Time.deltaTime, 0, 0);
         }
-    }
-
-    void AddVerticalMovment()
-    {
-        if (woodDropped)
+        else
         {
             rb2D.gravityScale = 1;
         }
@@ -77,11 +68,11 @@ public class WoodMovement : MonoBehaviour
     {
         if (woodDropped)
         {
-            RaycastHit2D hit1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
-            RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(0.25f, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
-            RaycastHit2D hit3 = Physics2D.Raycast(transform.position + new Vector3(-0.25f, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+            RaycastHit2D middleDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+            RaycastHit2D rightDown = Physics2D.Raycast(transform.position + new Vector3(0.25f, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
+            RaycastHit2D leftDown = Physics2D.Raycast(transform.position + new Vector3(-0.25f, -0.2505f, 0), Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
 
-            if (hit1.collider != null || hit2.collider != null || hit3.collider != null)
+            if (middleDown.collider != null || rightDown.collider != null || leftDown.collider != null)
             {
                 woodSpawner.SpawnNewWood();
                 this.enabled = false;

@@ -6,12 +6,7 @@ public class WoodDestroy : MonoBehaviour
 {
     [SerializeField] WoodMovement woodMovement;
     [SerializeField] float destroyHeight;
-    WoodObjectPool woodObjectPool;
-
-    void Start()
-    {
-        woodObjectPool = GameObject.Find("WoodObjectPool").GetComponent<WoodObjectPool>();
-    }
+    [HideInInspector] public WoodObjectPool woodObjectPool;
 
     void Update()
     {

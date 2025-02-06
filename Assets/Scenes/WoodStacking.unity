@@ -173,7 +173,6 @@ MonoBehaviour:
   cam: {fileID: 519420031}
   gameManager: {fileID: 643233613}
   woodObjectPool: {fileID: 703296883}
-  currentWood: {fileID: 0}
 --- !u!1 &107894812
 GameObject:
   m_ObjectHideFlags: 0

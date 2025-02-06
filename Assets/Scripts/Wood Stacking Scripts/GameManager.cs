@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Physics2D.gravity = new Vector3(0, -9.81f, 0); // Fixes no gravity bug when replaying the game
         gameTimer = gameTimeLimit;
     }
 
@@ -48,16 +49,16 @@ public class GameManager : MonoBehaviour
             {
                 timerText.gameObject.SetActive(false);
                 currentGameState = GameState.end;
-                StartCoroutine(CountWood());
+                StartCoroutine(CountScore());
             }
         }
     }
 
-    private IEnumerator CountWood()
+    private IEnumerator CountScore()
     {
         Physics2D.gravity = Vector2.zero;
-        GameObject[] wood = GameObject.FindGameObjectsWithTag("Wood");
 
+        GameObject[] wood = GameObject.FindGameObjectsWithTag("Wood");
         for (int i = 0; i < wood.Length; i++)
         {
             Destroy(wood[i]);
