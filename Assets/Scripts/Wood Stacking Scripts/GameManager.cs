@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
     void SendScoreToFirebaseOnSuccess()
     {
+        GameLobbyManager.Instance.isGameCompleted = true;
         SceneManager.LoadScene("Menu");
     }
 }

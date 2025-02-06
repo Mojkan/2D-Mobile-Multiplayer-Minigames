@@ -13,7 +13,7 @@ public class LobbyWinnerUIManager : MonoBehaviour
 
     public void Start()
     {
-        if (GameLobbyManager.Instance.isGameRunning)
+        if (GameLobbyManager.Instance.isGameCompleted)
         {
             menuUI.SetActive(false);
             lobbyWinnerUI.SetActive(true);
@@ -45,7 +45,7 @@ public class LobbyWinnerUIManager : MonoBehaviour
         }
 
         lobbyWinnerText.text = "Winner! " + players[0].name;
-        GameLobbyManager.Instance.isGameRunning = false;
+        GameLobbyManager.Instance.isGameCompleted = false;
     }
 
     void OnUpdateUserDataFailure()
