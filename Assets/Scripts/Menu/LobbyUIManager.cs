@@ -13,6 +13,11 @@ public class LobbyUIManager : MonoBehaviour
     [SerializeField] GameObject userInfoUIPrefab;
     [SerializeField] Transform userInfoUIPrefabParent;
 
+    void Start()
+    {
+        GameLobbyManager.Instance.lobbyUIManager = this;
+    }
+
     public void InitializeLobbyUI()
     {
         menuUI.SetActive(false);

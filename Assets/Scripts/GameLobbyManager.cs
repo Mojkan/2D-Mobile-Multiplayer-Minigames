@@ -48,7 +48,7 @@ public class GameLobby
 
 public class GameLobbyManager : MonoBehaviour
 {
-    [SerializeField] LobbyUIManager lobbyUIManager;
+    [HideInInspector] public LobbyUIManager lobbyUIManager;
     [HideInInspector] public bool isGameRunning;
 
     public static GameLobbyManager Instance { get; private set; }
@@ -98,8 +98,6 @@ public class GameLobbyManager : MonoBehaviour
 
     void OnJoiningLobbySuccess()
     {
-        lobbyUIManager ??= GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
-
         lobbyUIManager.InitializeLobbyUI();
     }
 
@@ -110,8 +108,6 @@ public class GameLobbyManager : MonoBehaviour
 
     public void UpdateLobbyPlayers()
     {
-        lobbyUIManager ??= GameObject.Find("LobbyUIManager").GetComponent<LobbyUIManager>();
-
         lobbyUIManager.UpdateUserInfoUI();
     }
 
