@@ -6,6 +6,7 @@ public class Login : MonoBehaviour
 {
     [SerializeField] TMP_InputField emailInput;
     [SerializeField] TMP_InputField passwordInput;
+    [SerializeField] GameObject FadeOutUI;
 
     public void SignInUser()
     {
@@ -14,12 +15,17 @@ public class Login : MonoBehaviour
 
     private void OnSignInSuccess()
     {
-        Debug.Log("Sign-in successful! Loading next scene...");
-        SceneManager.LoadScene("Menu");
+        FadeOutUI.SetActive(true);
+        Invoke(nameof(ChangeToMenuScene), 2);
     }
 
     private void OnSignInFailure(string error)
     {
         ErrorHandler.Instance.DisplayErrorMessage("Sign in failed!", 900, 3);
+    }
+
+    void ChangeToMenuScene()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
