@@ -134,31 +134,32 @@ public class FirebaseManager : MonoBehaviour
 
     public void JoinLobby(string lobbyCode, Player player, Action OnSuccess, Action OnFailure)
     {
-        db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").Child(savedUsername).SetValueAsync(player.ToDictionary()).ContinueWithOnMainThread(task =>
+        // Check if the lobby exists
+        db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("MaxPlayers").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
-                db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("MaxPlayers").GetValueAsync().ContinueWithOnMainThread(task =>
+                DataSnapshot snapshot = task.Result;
+
+                if (snapshot.Exists)
                 {
-                    if (task.IsCompleted)
-                    {
-                        DataSnapshot snapshot = task.Result;
+                    savedMaxPlayers = int.Parse(snapshot.GetRawJsonValue());
+                    savedLobbyCode = lobbyCode;
 
-                        savedMaxPlayers = int.Parse(snapshot.GetRawJsonValue());
-                        savedLobbyCode = lobbyCode;
-
-                        StartListenToLobbyPlayersChanged();
-                        OnSuccess?.Invoke();
-                    }
-                    else
+                    // Add player to lobby
+                    db.RootReference.Child("gamelobbies").Child(lobbyCode).Child("Players").Child(savedUsername).SetValueAsync(player.ToDictionary()).ContinueWithOnMainThread(task =>
                     {
-                        OnFailure?.Invoke();
-                    }
-                });
-            }
-            else
-            {
-                OnFailure?.Invoke();
+                        if (task.IsCompleted)
+                        {
+                            StartListenToLobbyPlayersChanged();
+                            OnSuccess?.Invoke();
+                        }
+                    });
+                }
+                else
+                {
+                    OnFailure?.Invoke();
+                }
             }
         });
     }
