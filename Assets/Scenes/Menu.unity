@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ca1a9936f11964691c47fcce105a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuUI: {fileID: 585286455}
+  menuUI: {fileID: 1811600634}
   lobbyWinnerUI: {fileID: 1382079947}
   lobbyWinnerText: {fileID: 641287656}
   userInfoUIPrefab: {fileID: 4158649019618176706, guid: 656a2420b383ac640ab0d67d0fff7649, type: 3}
