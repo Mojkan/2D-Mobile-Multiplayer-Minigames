@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -6,6 +5,9 @@ using TMPro;
 public class MenuUIManager : MonoBehaviour
 {
     [SerializeField] GameObject menuUI;
+    [SerializeField] GameObject QuitUI;
+
+    [SerializeField] GameObject findGameUI;
 
     [SerializeField] GameObject JoinLobbyUI;
     [SerializeField] TMP_InputField lobbyCodeInput;
@@ -14,30 +16,66 @@ public class MenuUIManager : MonoBehaviour
     [SerializeField] Slider LobbyMaxPlayersInput;
     [SerializeField] TextMeshProUGUI MaxPlayerNumberUI;
 
+    public void EnableFindGameUI()
+    {
+        menuUI.SetActive(false);
+        findGameUI.SetActive(true);
+    }
+
+    public void DisableFindGameUI()
+    {
+        menuUI.SetActive(true);
+        findGameUI.SetActive(false);
+    }
+
+    #region Quit Window
+    public void EnableQuitWindow()
+    {
+        menuUI.SetActive(false);
+        QuitUI.SetActive(true);
+    }
+
+    public void DisableQuitWindow()
+    {
+        menuUI.SetActive(true);
+        QuitUI.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    #endregion
+
     #region Join Window
     public void EnableEnterLobbyCodeWindow()
     {
-        menuUI.SetActive(false);
+        findGameUI.SetActive(false);
         JoinLobbyUI.SetActive(true);
     }
 
     public void DisableEnterLobbyCodeWindow()
     {
-        menuUI.SetActive(true);
+        findGameUI.SetActive(true);
         JoinLobbyUI.SetActive(false);
+    }
+
+    public void JoinNewLobby()
+    {
+        GameLobbyManager.Instance.JoinLobby(lobbyCodeInput.text);
     }
     #endregion
 
     #region Create Lobby Window
     public void EnableCreateLobbyWindow()
     {
-        menuUI.SetActive(false);
+        findGameUI.SetActive(false);
         CreateLobbyUI.SetActive(true);
     }
 
     public void DisableCreateLobbyWindow()
     {
-        menuUI.SetActive(true);
+        findGameUI.SetActive(true);
         CreateLobbyUI.SetActive(false);
     }
 
@@ -46,21 +84,11 @@ public class MenuUIManager : MonoBehaviour
         MaxPlayerNumberUI.text = "Lobby Size: " + LobbyMaxPlayersInput.value;
     }
 
-    #endregion
-
-    public void FindNewLobby()
-    {
-        Debug.Log("Not implemented");
-    }
-
-    public void JoinNewLobby()
-    {
-        GameLobbyManager.Instance.JoinLobby(lobbyCodeInput.text);
-    }
-
     public void CreateNewLobby()
     {
         CreateLobbyUI.SetActive(false);
         GameLobbyManager.Instance.CreateLobby((int)LobbyMaxPlayersInput.value);
     }
+    #endregion
+
 }
