@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6678936094345004269}
   - component: {fileID: 208230538271757605}
   - component: {fileID: 2286239037324917308}
-  - component: {fileID: 529760760511664617}
+  - component: {fileID: 56440020911271788}
   m_Layer: 5
   m_Name: ErrorText
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &529760760511664617
+--- !u!114 &56440020911271788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

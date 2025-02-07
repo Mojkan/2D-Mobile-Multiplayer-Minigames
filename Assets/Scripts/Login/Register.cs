@@ -23,6 +23,7 @@ public class Register : MonoBehaviour
         string newProfileJson = JsonUtility.ToJson(newProfile);
 
         FirebaseManager.Instance.RegisterNewUser(emailInput.text, passwordInput.text, newProfileJson, OnRegisterSuccess, OnRegisterFailure);
+        SoundManager.Instance.PlaySound("BUTTONCLICK", 0.5f);
     }
 
     private void OnRegisterSuccess()

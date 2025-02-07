@@ -11,6 +11,7 @@ public class Login : MonoBehaviour
     public void SignInUser()
     {
         FirebaseManager.Instance.SignIn(emailInput.text, passwordInput.text, OnSignInSuccess, OnSignInFailure);
+        SoundManager.Instance.PlaySound("BUTTONCLICK", 0.5f);
     }
 
     private void OnSignInSuccess()

@@ -4472,6 +4472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de5cfb49c595574e8a5b310822b30fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonClickSoundVolume: 0.5
   menuUI: {fileID: 1811600634}
   QuitUI: {fileID: 466707737}
   findGameUI: {fileID: 585286455}
