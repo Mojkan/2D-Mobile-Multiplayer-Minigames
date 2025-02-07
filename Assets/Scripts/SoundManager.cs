@@ -6,6 +6,7 @@ using UnityEngine;
 public class SoundData
 {
     public string soundName;
+    public float volume;
     public AudioClip audioClip;
 }
 
@@ -17,9 +18,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
 
     [Header("Audio Clips")]
-    [SerializeField] List<SoundData> audioClips = new List<SoundData>();
+    [SerializeField] List<SoundData> sounds = new List<SoundData>();
 
-    Dictionary<string, AudioClip> soundDictionary = new Dictionary<string, AudioClip>();
+    Dictionary<string, SoundData> soundDictionary = new Dictionary<string, SoundData>();
 
     private void Awake()
     {
@@ -33,18 +34,25 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        foreach (var sound in audioClips)
+        foreach (var sound in sounds)
         {
-            soundDictionary.Add(sound.soundName, sound.audioClip);
+            soundDictionary.Add(sound.soundName, sound);
+        }
+    }
+
+    public void PlaySound(string soundName)
+    {
+        if (soundDictionary.TryGetValue(soundName, out SoundData soundData))
+        {
+            audioSource.PlayOneShot(soundData.audioClip, soundData.volume);
         }
     }
 
     public void PlaySound(string soundName, float volume)
     {
-        if (soundDictionary.TryGetValue(soundName, out AudioClip audioClip))
+        if (soundDictionary.TryGetValue(soundName, out SoundData soundData))
         {
-            audioSource.volume = volume;
-            audioSource.PlayOneShot(audioClip);
+            audioSource.PlayOneShot(soundData.audioClip, volume);
         }
     }
 }

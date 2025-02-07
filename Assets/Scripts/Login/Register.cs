@@ -23,12 +23,11 @@ public class Register : MonoBehaviour
         string newProfileJson = JsonUtility.ToJson(newProfile);
 
         FirebaseManager.Instance.RegisterNewUser(emailInput.text, passwordInput.text, newProfileJson, OnRegisterSuccess, OnRegisterFailure);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", 0.5f);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     private void OnRegisterSuccess()
     {
-        Debug.Log("Registered new user! Loading next scene...");
         SceneManager.LoadScene("WoodStacking");
     }
 

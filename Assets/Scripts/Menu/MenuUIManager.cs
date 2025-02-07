@@ -24,14 +24,14 @@ public class MenuUIManager : MonoBehaviour
     {
         menuUI.SetActive(false);
         findGameUI.SetActive(true);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void DisableFindGameUI()
     {
         menuUI.SetActive(true);
         findGameUI.SetActive(false);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     #region Quit Window
@@ -39,14 +39,14 @@ public class MenuUIManager : MonoBehaviour
     {
         menuUI.SetActive(false);
         QuitUI.SetActive(true);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void DisableQuitWindow()
     {
         menuUI.SetActive(true);
         QuitUI.SetActive(false);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void QuitGame()
@@ -60,20 +60,20 @@ public class MenuUIManager : MonoBehaviour
     {
         findGameUI.SetActive(false);
         JoinLobbyUI.SetActive(true);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void DisableEnterLobbyCodeWindow()
     {
         findGameUI.SetActive(true);
         JoinLobbyUI.SetActive(false);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void JoinNewLobby()
     {
         GameLobbyManager.Instance.JoinLobby(lobbyCodeInput.text);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
     #endregion
 
@@ -82,26 +82,26 @@ public class MenuUIManager : MonoBehaviour
     {
         findGameUI.SetActive(false);
         CreateLobbyUI.SetActive(true);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void DisableCreateLobbyWindow()
     {
         findGameUI.SetActive(true);
         CreateLobbyUI.SetActive(false);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
 
     public void UpdateCreateLobbyMaxPlayersText()
     {
         MaxPlayerNumberUI.text = "Lobby Size: " + LobbyMaxPlayersInput.value;
-        SoundManager.Instance.PlaySound("SLIDER", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("SLIDER");
     }
 
     public void CreateNewLobby()
     {
         CreateLobbyUI.SetActive(false);
-        SoundManager.Instance.PlaySound("BUTTONCLICK", buttonClickSoundVolume);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
         GameLobbyManager.Instance.CreateLobby((int)LobbyMaxPlayersInput.value);
     }
     #endregion

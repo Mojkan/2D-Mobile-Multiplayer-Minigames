@@ -1457,10 +1457,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 591080116}
-  audioClips:
+  sounds:
   - soundName: BUTTONCLICK
+    volume: 0.5
     audioClip: {fileID: 8300000, guid: 8be8f0fde05bc0741af6533d0cc316fa, type: 3}
   - soundName: SLIDER
+    volume: 0.4
     audioClip: {fileID: 8300000, guid: 5da046af1e5955440b206c81a67daaa1, type: 3}
 --- !u!82 &591080116
 AudioSource:
