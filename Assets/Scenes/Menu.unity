@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 172525991}
   - component: {fileID: 172525990}
   m_Layer: 5
-  m_Name: SettingsButtonText
+  m_Name: StatsButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1875,7 +1875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3775360856168035230, guid: d28acae1df3dc1e4fab4ed184ac1c1c6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3784010985780489358, guid: d28acae1df3dc1e4fab4ed184ac1c1c6, type: 3}
       propertyPath: m_Pivot.x
@@ -2162,7 +2162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e78bc717e05624e4095c36bcff696126, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2507,7 +2507,7 @@ MonoBehaviour:
   m_text: 'LOBBY SIZE: 2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9cbbed989e706446bb84f98e928084c, type: 2}
-  m_sharedMaterial: {fileID: 8233215638883581033, guid: ad27f0963fd4a274c866b86f1da05ceb, type: 2}
+  m_sharedMaterial: {fileID: 1669664940755473697, guid: d9cbbed989e706446bb84f98e928084c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2648,7 +2648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 1470797318, guid: 21de0d38ee307e54aac99e10e9e9f301, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2657,7 +2657,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2.5
 --- !u!222 &937818781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2700,7 +2700,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_SizeDelta: {x: -12, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &998174595
 GameObject:
@@ -5924,14 +5924,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 1470797318, guid: 21de0d38ee307e54aac99e10e9e9f301, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5940,7 +5940,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2.5
 --- !u!222 &1917381397
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6116,7 +6116,7 @@ GameObject:
   - component: {fileID: 1972113725}
   - component: {fileID: 1972113724}
   m_Layer: 5
-  m_Name: EmailIcon
+  m_Name: CodeIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6131,7 +6131,7 @@ RectTransform:
   m_GameObject: {fileID: 1972113722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.67, y: 0.536, z: 0.67}
+  m_LocalScale: {x: 0.8, y: 0.64, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1770937418}
@@ -6161,7 +6161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b12b9e64f2dc45f408a3ac7bbf0d1607, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6192,7 +6192,7 @@ GameObject:
   - component: {fileID: 1974603352}
   - component: {fileID: 1974603351}
   m_Layer: 5
-  m_Name: SettingsButton
+  m_Name: StatsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
