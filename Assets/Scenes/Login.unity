@@ -402,7 +402,6 @@ GameObject:
   - component: {fileID: 80696287}
   - component: {fileID: 80696286}
   - component: {fileID: 80696285}
-  - component: {fileID: 80696288}
   m_Layer: 5
   m_Name: SignUpButton
   m_TagString: Untagged
@@ -474,8 +473,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 80696288}
-        m_TargetAssemblyTypeName: ChangeUI, Assembly-CSharp
+      - m_Target: {fileID: 1096793110}
+        m_TargetAssemblyTypeName: LoginRegisterUIManager, Assembly-CSharp
         m_MethodName: ActivateSignUpUI
         m_Mode: 1
         m_Arguments:
@@ -524,20 +523,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80696283}
   m_CullTransparentMesh: 1
---- !u!114 &80696288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80696283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76cf86dbaebd5e48ab3adf15a74baf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoginUI: {fileID: 377577089}
-  SignUpUI: {fileID: 1741823146}
 --- !u!1 &111349131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,7 +2703,6 @@ GameObject:
   - component: {fileID: 1054580606}
   - component: {fileID: 1054580605}
   - component: {fileID: 1054580604}
-  - component: {fileID: 1054580607}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2790,8 +2774,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1054580607}
-        m_TargetAssemblyTypeName: ChangeUI, Assembly-CSharp
+      - m_Target: {fileID: 1096793110}
+        m_TargetAssemblyTypeName: LoginRegisterUIManager, Assembly-CSharp
         m_MethodName: ActivateLoginUI
         m_Mode: 1
         m_Arguments:
@@ -2840,20 +2824,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054580602}
   m_CullTransparentMesh: 1
---- !u!114 &1054580607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054580602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76cf86dbaebd5e48ab3adf15a74baf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoginUI: {fileID: 377577089}
-  SignUpUI: {fileID: 1741823146}
 --- !u!1 &1064623496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,6 +2920,7 @@ GameObject:
   - component: {fileID: 1096793108}
   - component: {fileID: 1096793107}
   - component: {fileID: 1096793106}
+  - component: {fileID: 1096793110}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Canvas
@@ -3042,6 +3013,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1096793110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096793105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b186d8256168f08468d4016253a12522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FadeOutUI: {fileID: 1381820570}
+  LoginUI: {fileID: 377577089}
+  SignUpUI: {fileID: 1741823146}
+  loginEmailInput: {fileID: 265016613}
+  loginPasswordInput: {fileID: 846978296}
+  registerEmailInput: {fileID: 1225095979}
+  registerPasswordInput: {fileID: 968433850}
+  registerUserNameInput: {fileID: 776181861}
 --- !u!1 &1127276363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,7 +3179,6 @@ GameObject:
   - component: {fileID: 1148045689}
   - component: {fileID: 1148045688}
   - component: {fileID: 1148045687}
-  - component: {fileID: 1148045690}
   m_Layer: 5
   m_Name: LoginButton
   m_TagString: Untagged
@@ -3260,8 +3250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148045690}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
+      - m_Target: {fileID: 1096793110}
+        m_TargetAssemblyTypeName: LoginRegisterUIManager, Assembly-CSharp
         m_MethodName: SignInUser
         m_Mode: 1
         m_Arguments:
@@ -3310,21 +3300,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148045685}
   m_CullTransparentMesh: 1
---- !u!114 &1148045690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148045685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5608f016467a2c641a8b6f9758625964, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emailInput: {fileID: 265016613}
-  passwordInput: {fileID: 846978296}
-  FadeOutUI: {fileID: 1381820570}
 --- !u!1 &1184044138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,7 +3870,6 @@ GameObject:
   - component: {fileID: 1683892863}
   - component: {fileID: 1683892862}
   - component: {fileID: 1683892861}
-  - component: {fileID: 1683892864}
   m_Layer: 5
   m_Name: SignUpButton
   m_TagString: Untagged
@@ -3967,8 +3941,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1683892864}
-        m_TargetAssemblyTypeName: Register, Assembly-CSharp
+      - m_Target: {fileID: 1096793110}
+        m_TargetAssemblyTypeName: LoginRegisterUIManager, Assembly-CSharp
         m_MethodName: RegisterUser
         m_Mode: 1
         m_Arguments:
@@ -4017,21 +3991,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683892859}
   m_CullTransparentMesh: 1
---- !u!114 &1683892864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683892859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21dcd5f7591bdba43bc5d21cd0867864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emailInput: {fileID: 1225095979}
-  passwordInput: {fileID: 968433850}
-  userNameInput: {fileID: 776181861}
 --- !u!1 &1698472705
 GameObject:
   m_ObjectHideFlags: 0
