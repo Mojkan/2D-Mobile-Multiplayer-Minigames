@@ -51,6 +51,7 @@ public class MenuUIManager : MonoBehaviour
 
     public void QuitGame()
     {
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
         Application.Quit();
     }
     #endregion

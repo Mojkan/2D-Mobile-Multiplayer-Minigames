@@ -74,6 +74,7 @@ public class WoodMovement : MonoBehaviour
 
             if (middleDown.collider != null || rightDown.collider != null || leftDown.collider != null)
             {
+                SoundManager.Instance.PlaySound("WOODLANDING");
                 woodSpawner.SpawnNewWood();
                 this.enabled = false;
             }

@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf1f57fc15ac224faadbbcfecef36a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimeLimit: 5
+  gameTimeLimit: 30
   woodCountSpeed: 0.15
   FadeOutUI: {fileID: 1549630946}
   timerText: {fileID: 1313578432}

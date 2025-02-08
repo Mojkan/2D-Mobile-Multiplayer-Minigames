@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(wood[i]);
             UpdateScore();
+            SoundManager.Instance.PlaySoundWithPitchIncrease("SCORECOUNTING");
             yield return new WaitForSeconds(woodCountSpeed);
         }
 
