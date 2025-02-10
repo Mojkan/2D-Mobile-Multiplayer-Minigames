@@ -33,13 +33,13 @@ public class WoodMovement : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             woodDropped = true;
-            gameObject.tag = "Wood";
+            gameObject.tag = "ScoreObject";
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             woodDropped = true;
-            gameObject.tag = "Wood";
+            gameObject.tag = "ScoreObject";
         }
     }
 

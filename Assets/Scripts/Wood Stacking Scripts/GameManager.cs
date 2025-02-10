@@ -59,13 +59,13 @@ public class GameManager : MonoBehaviour
     {
         Physics2D.gravity = Vector2.zero;
 
-        GameObject[] wood = GameObject.FindGameObjectsWithTag("Wood");
+        GameObject[] scoreGameObjects = GameObject.FindGameObjectsWithTag("ScoreObject");
 
-        FirebaseManager.Instance.UpdatePlayerScore(wood.Length);
+        FirebaseManager.Instance.UpdatePlayerScore(scoreGameObjects.Length);
 
-        for (int i = 0; i < wood.Length; i++)
+        for (int i = 0; i < scoreGameObjects.Length; i++)
         {
-            Destroy(wood[i]);
+            Destroy(scoreGameObjects[i]);
             UpdateScore();
             SoundManager.Instance.PlaySoundWithPitchIncrease("SCORECOUNTING");
             yield return new WaitForSeconds(woodCountSpeed);

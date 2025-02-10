@@ -56,7 +56,7 @@ public class WoodSpawner : MonoBehaviour
 
     void CountWood()
     {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Wood");
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("ScoreObject");
         woodCount = gameObjects.Length;
     }
 
