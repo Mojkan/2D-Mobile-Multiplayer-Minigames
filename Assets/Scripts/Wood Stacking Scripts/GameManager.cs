@@ -60,6 +60,9 @@ public class GameManager : MonoBehaviour
         Physics2D.gravity = Vector2.zero;
 
         GameObject[] wood = GameObject.FindGameObjectsWithTag("Wood");
+
+        FirebaseManager.Instance.UpdatePlayerScore(wood.Length);
+
         for (int i = 0; i < wood.Length; i++)
         {
             Destroy(wood[i]);
@@ -68,7 +71,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(woodCountSpeed);
         }
 
-        SendScoreToFirebase();
+        GameEnd();
     }
 
     void UpdateScore()
@@ -77,9 +80,8 @@ public class GameManager : MonoBehaviour
         scoreText.text = points.ToString();
     }
 
-    void SendScoreToFirebase()
+    void GameEnd()
     {
-        FirebaseManager.Instance.UpdatePlayerScore(points);
         GameLobbyManager.Instance.isGameCompleted = true;
         FadeOutUI.SetActive(true);
         Invoke(nameof(LoadMenuScene), 2);

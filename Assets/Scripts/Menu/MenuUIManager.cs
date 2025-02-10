@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MenuUIManager : MonoBehaviour
@@ -9,13 +10,14 @@ public class MenuUIManager : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] GameObject menuUI;
+    [SerializeField] GameObject logOutUI;
     [SerializeField] GameObject QuitUI;
-
+    [Space(10)]
     [SerializeField] GameObject findGameUI;
-
+    [Space(10)]
     [SerializeField] GameObject JoinLobbyUI;
     [SerializeField] TMP_InputField lobbyCodeInput;
-
+    [Space(10)]
     [SerializeField] GameObject CreateLobbyUI;
     [SerializeField] Slider LobbyMaxPlayersInput;
     [SerializeField] TextMeshProUGUI MaxPlayerNumberUI;
@@ -33,6 +35,29 @@ public class MenuUIManager : MonoBehaviour
         findGameUI.SetActive(false);
         SoundManager.Instance.PlaySound("BUTTONCLICK");
     }
+
+    #region Log Out Window
+    public void EnableLogOutWindow()
+    {
+        menuUI.SetActive(false);
+        logOutUI.SetActive(true);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
+    }
+
+    public void DisableLogOutWindow()
+    {
+        menuUI.SetActive(true);
+        logOutUI.SetActive(false);
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
+    }
+
+    public void LogOut()
+    {
+        SoundManager.Instance.PlaySound("BUTTONCLICK");
+        FirebaseManager.Instance.SignOut();
+        SceneManager.LoadScene("Login");
+    }
+    #endregion
 
     #region Quit Window
     public void EnableQuitWindow()

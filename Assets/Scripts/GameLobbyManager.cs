@@ -27,21 +27,11 @@ public class GameLobby
 {
     public List<Player> Players;
     public int MaxPlayers;
-    
-    public enum LobbyState
-    {
-        waitforplayers,
-        gamerunning,
-    }
-    public LobbyState currentLobbyState;
 
     public GameLobby(int maxPlayers)
     {
-        // Lobby settings
         MaxPlayers = maxPlayers;
-        currentLobbyState = LobbyState.waitforplayers;
 
-        // All players in lobby
         Players = new List<Player>();
     }
 }
