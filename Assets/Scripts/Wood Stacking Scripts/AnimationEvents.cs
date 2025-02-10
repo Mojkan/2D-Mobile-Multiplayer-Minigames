@@ -7,7 +7,7 @@ public class AnimationEvents : MonoBehaviour
     [SerializeField] GameManager gameManager;
 
     [SerializeField] WoodSpawner woodSpawner;
-    //[SerializeField] KnifeSpawner knifeSpawner;
+    [SerializeField] KnifeSpawner knifeSpawner;
 
     public void startGame()
     {
@@ -19,7 +19,7 @@ public class AnimationEvents : MonoBehaviour
         }
         else
         {
-            //knifeSpawner.SpawnNewKnife();
+            knifeSpawner.SpawnNewKnife();
         }
     }
 }

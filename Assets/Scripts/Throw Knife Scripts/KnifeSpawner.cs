@@ -27,9 +27,8 @@ public class KnifeSpawner : MonoBehaviour
 
         GameObject newKnife = knifeObjectPool.GetPrefab();
         newKnife.transform.position = knifeSpawnPos;
-        /*
-        newKnife.GetComponent<KnifeDestroy>().knifeObjectPool = knifeObjectPool;
+        
         newKnife.GetComponent<KnifeMovement>().gameManager = gameManager;
-        newKnife.GetComponent<KnifeMovement>().knifeSpawner = this;*/
+        newKnife.GetComponent<KnifeMovement>().knifeSpawner = this;
     }
 }
