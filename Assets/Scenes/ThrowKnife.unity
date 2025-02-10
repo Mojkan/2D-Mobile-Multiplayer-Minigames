@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 89193811}
+  - component: {fileID: 89193812}
   m_Layer: 0
   m_Name: KnifeSpawner
   m_TagString: Untagged
@@ -153,6 +154,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &89193812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89193810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c573a1d60e3f84aba4360742da66c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ySpawnPos: 0
+  gameManager: {fileID: 0}
+  knifeObjectPool: {fileID: 0}
 --- !u!1 &107894812
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,11 +554,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 703296881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27830bc9485f9514e986a3719244335a, type: 3}
+  m_Script: {fileID: 11500000, guid: 778644eccdd1a974a9add0b11c8a15a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodPrefab: {fileID: 8417998310336698053, guid: e3e34a27e422a8a44a85591dc00a3e9b, type: 3}
-  woodPoolSize: 20
+  prefab: {fileID: 8417998310336698053, guid: 882c39625270e4441b3818a85fa56bb9, type: 3}
+  poolSize: 25
 --- !u!1 &748337183
 GameObject:
   m_ObjectHideFlags: 0
