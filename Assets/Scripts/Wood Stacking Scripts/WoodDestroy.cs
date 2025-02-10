@@ -6,14 +6,14 @@ public class WoodDestroy : MonoBehaviour
 {
     [SerializeField] WoodMovement woodMovement;
     [SerializeField] float destroyHeight;
-    [HideInInspector] public WoodObjectPool woodObjectPool;
+    [HideInInspector] public ObjectPool woodObjectPool;
 
     void Update()
     {
         if (transform.position.y < destroyHeight)
         {
             woodMovement.ResetWood();
-            woodObjectPool.ReturnWood(gameObject);
+            woodObjectPool.ReturnPrefab(gameObject);
         }
     }
 }

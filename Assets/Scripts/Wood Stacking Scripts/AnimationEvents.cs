@@ -5,15 +5,21 @@ using UnityEngine;
 public class AnimationEvents : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-    [SerializeField] WoodSpawner woodSpawner;
 
-    void startGame()
+    [SerializeField] WoodSpawner woodSpawner;
+    //[SerializeField] KnifeSpawner knifeSpawner;
+
+    public void startGame()
     {
         gameManager.currentGameState = GameManager.GameState.running;
-    }
 
-    void startWoodSpawner()
-    {
-        woodSpawner.SpawnNewWood();
+        if (woodSpawner != null)
+        {
+            woodSpawner.SpawnNewWood();
+        }
+        else
+        {
+            //knifeSpawner.SpawnNewKnife();
+        }
     }
 }

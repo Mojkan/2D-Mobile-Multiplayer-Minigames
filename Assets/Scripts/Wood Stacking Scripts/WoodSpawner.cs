@@ -11,7 +11,7 @@ public class WoodSpawner : MonoBehaviour
     [Header("Reference")]
     [SerializeField] Camera cam;
     [SerializeField] GameManager gameManager;
-    [SerializeField] WoodObjectPool woodObjectPool;
+    [SerializeField] ObjectPool woodObjectPool;
 
     Vector3 cameraStartPos;
     float cameraStartSize;
@@ -46,7 +46,7 @@ public class WoodSpawner : MonoBehaviour
         ySpawnPos = spawnStart + woodCount / 2;
         Vector2 woodSpawnPos = new Vector2(Random.Range(minXSpawnPos, maxXSpawnPos), ySpawnPos);
 
-        GameObject newWood = woodObjectPool.GetWood();
+        GameObject newWood = woodObjectPool.GetPrefab();
         newWood.transform.position = woodSpawnPos;
 
         newWood.GetComponent<WoodDestroy>().woodObjectPool = woodObjectPool;
