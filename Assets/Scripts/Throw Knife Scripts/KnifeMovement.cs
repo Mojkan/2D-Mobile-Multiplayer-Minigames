@@ -30,7 +30,7 @@ public class KnifeMovement : MonoBehaviour
             knifeCollided = true;
             knifeSpawner.DestroyAllActiveKnifes();
         }
-        else if (collision.gameObject.CompareTag("WoodTarget"))
+        else if (collision.gameObject.CompareTag("WoodTarget") && !knifeCollided)
         {
             knifeCollided = true;
             transform.SetParent(collision.transform);
