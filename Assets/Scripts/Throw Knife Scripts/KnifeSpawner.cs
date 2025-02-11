@@ -6,12 +6,25 @@ public class KnifeSpawner : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float ySpawnPos;
+    [SerializeField] float woodTargetRotateSpeed;
 
     [Header("Reference")]
     [SerializeField] GameManager gameManager;
     [SerializeField] ObjectPool knifeObjectPool;
+    [SerializeField] Transform WoodTarget;
 
-    float knifeCount;
+    void Update()
+    {
+        RotateWoodTarget();
+    }
+
+    void RotateWoodTarget()
+    {
+        if (gameManager.currentGameState == GameManager.GameState.running)
+        {
+            WoodTarget.Rotate(0, 0, woodTargetRotateSpeed * Time.deltaTime);
+        }
+    }
 
     public void SpawnNewKnife()
     {
@@ -27,8 +40,21 @@ public class KnifeSpawner : MonoBehaviour
 
         GameObject newKnife = knifeObjectPool.GetPrefab();
         newKnife.transform.position = knifeSpawnPos;
-        
-        newKnife.GetComponent<KnifeMovement>().gameManager = gameManager;
-        newKnife.GetComponent<KnifeMovement>().knifeSpawner = this;
+        KnifeMovement knifeMovment = newKnife.GetComponent<KnifeMovement>();
+
+        knifeMovment.gameManager = gameManager;
+        knifeMovment.knifeSpawner = this;
+        knifeMovment.knifeObjectPool = knifeObjectPool;
+        knifeMovment.woodTarget = WoodTarget;
+    }
+
+    public void DestroyAllKnifes()
+    {
+        GameObject[] knifes = GameObject.FindGameObjectsWithTag("ScoreObject");
+
+        foreach(var knife in knifes)
+        {
+            knife.GetComponent<KnifeMovement>().DestroyKnife();
+        }
     }
 }

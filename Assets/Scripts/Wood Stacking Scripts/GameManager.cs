@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float gameTimeLimit;
-    [SerializeField] float woodCountSpeed;
+    [SerializeField] float countSpeed;
 
     [Header("Reference")]
     [SerializeField] GameObject FadeOutUI;
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
             Destroy(scoreGameObjects[i]);
             UpdateScore();
             SoundManager.Instance.PlaySoundWithPitchIncrease("SCORECOUNTING");
-            yield return new WaitForSeconds(woodCountSpeed);
+            yield return new WaitForSeconds(countSpeed);
         }
 
         GameEnd();

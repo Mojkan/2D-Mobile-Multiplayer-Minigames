@@ -175,7 +175,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -203,9 +203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8d68d67b5736942bfd8b9efa4c1801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSpeed: 10
+  shootSpeed: 15
+  destroyShootSpeed: 2
+  minDestroyDistance: 5
   rb2D: {fileID: 6620474427175096557}
+  collider2D: {fileID: 3475180924180187837}
+  woodTarget: {fileID: 0}
   knifeSpawner: {fileID: 0}
   gameManager: {fileID: 0}
+  knifeObjectPool: {fileID: 0}
   knifeDropped: 0
   knifeCollided: 0
+  knifeDestroy: 0
