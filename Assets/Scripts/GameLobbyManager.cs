@@ -40,6 +40,7 @@ public class GameLobbyManager : MonoBehaviour
 {
     [HideInInspector] public LobbyUIManager lobbyUIManager;
     [HideInInspector] public bool isGameCompleted;
+    [HideInInspector] public int currentScore;
 
     public static GameLobbyManager Instance { get; private set; }
 
@@ -111,5 +112,11 @@ public class GameLobbyManager : MonoBehaviour
     void LoadNewScene()
     {
         SceneManager.LoadScene("WoodStacking");
+    }
+
+    public void UploadScore(int score)
+    {
+        currentScore += score;
+        FirebaseManager.Instance.UpdatePlayerScore(currentScore);
     }
 }

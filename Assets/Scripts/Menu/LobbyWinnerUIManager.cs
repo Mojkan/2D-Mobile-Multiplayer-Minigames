@@ -57,6 +57,7 @@ public class LobbyWinnerUIManager : MonoBehaviour
     {
         SoundManager.Instance.PlaySound("BUTTONCLICK");
         FirebaseManager.Instance.QuitLobby();
+        GameLobbyManager.Instance.currentScore = 0;
         menuUI.SetActive(true);
         lobbyWinnerUI.SetActive(false);
     }

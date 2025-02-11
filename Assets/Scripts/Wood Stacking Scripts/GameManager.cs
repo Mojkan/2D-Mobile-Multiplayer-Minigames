@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         GameObject[] scoreGameObjects = GameObject.FindGameObjectsWithTag("ScoreObject");
 
-        FirebaseManager.Instance.UpdatePlayerScore(scoreGameObjects.Length);
+        GameLobbyManager.Instance.UploadScore(scoreGameObjects.Length);
 
         for (int i = 0; i < scoreGameObjects.Length; i++)
         {
@@ -89,6 +89,13 @@ public class GameManager : MonoBehaviour
 
     void LoadMenuScene()
     {
-        SceneManager.LoadScene("Menu");
+        if (SceneManager.GetActiveScene().name == "WoodStacking")
+        {
+            SceneManager.LoadScene("ThrowKnife");
+        }
+        else
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }
