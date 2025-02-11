@@ -204,10 +204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSpeed: 15
-  destroyShootSpeed: 2
-  minDestroyDistance: 5
+  destroyShootSpeed: 15
+  minDestroyDistance: 20
   rb2D: {fileID: 6620474427175096557}
-  collider2D: {fileID: 3475180924180187837}
+  knifeCollider: {fileID: 3475180924180187837}
   woodTarget: {fileID: 0}
   knifeSpawner: {fileID: 0}
   gameManager: {fileID: 0}

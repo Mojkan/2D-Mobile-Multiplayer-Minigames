@@ -42,8 +42,8 @@ public class KnifeSpawner : MonoBehaviour
         newKnife.transform.position = knifeSpawnPos;
         KnifeMovement knifeMovment = newKnife.GetComponent<KnifeMovement>();
 
-        knifeMovment.gameManager = gameManager;
         knifeMovment.knifeSpawner = this;
+        knifeMovment.gameManager = gameManager;
         knifeMovment.knifeObjectPool = knifeObjectPool;
         knifeMovment.woodTarget = WoodTarget;
     }
@@ -52,9 +52,11 @@ public class KnifeSpawner : MonoBehaviour
     {
         GameObject[] knifes = GameObject.FindGameObjectsWithTag("ScoreObject");
 
-        foreach(var knife in knifes)
+        for(int i = 0; i < knifes.Length; i++)
         {
-            knife.GetComponent<KnifeMovement>().DestroyKnife();
+            knifes[i].GetComponent<KnifeMovement>().DestroyKnife();
         }
+
+        SpawnNewKnife();
     }
 }

@@ -11,7 +11,7 @@ public class KnifeMovement : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] Rigidbody2D rb2D;
-    [SerializeField] BoxCollider2D collider2D;
+    [SerializeField] BoxCollider2D knifeCollider;
     [HideInInspector] public Transform woodTarget;
     [HideInInspector] public KnifeSpawner knifeSpawner;
     [HideInInspector] public GameManager gameManager;
@@ -27,17 +27,13 @@ public class KnifeMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ScoreObject") && !knifeCollided)
         {
-            Debug.Log("Knife");
-            ResetKnife();
             knifeSpawner.DestroyAllKnifes();
-            knifeSpawner.SpawnNewKnife();
         }
         else if (collision.gameObject.CompareTag("WoodTarget"))
         {
-            Debug.Log("Wood");
             knifeCollided = true;
-            knifeSpawner.SpawnNewKnife();
             transform.SetParent(collision.transform);
+            knifeSpawner.SpawnNewKnife();
         }
     }
 
@@ -76,9 +72,12 @@ public class KnifeMovement : MonoBehaviour
 
         if (knifeDestroy)
         {
+            Debug.Log(Vector2.Distance(woodTarget.position, transform.position) < minDestroyDistance);
+
             if (Vector2.Distance(woodTarget.position, transform.position) < minDestroyDistance)
             {
-                rb2D.transform.position -= knifeDirection * destroyShootSpeed * Time.deltaTime;
+                GetComponentInChildren<SpriteRenderer>().color = Color.red;
+                transform.position -= knifeDirection * destroyShootSpeed * Time.deltaTime;
             }
             else
             {
@@ -90,24 +89,25 @@ public class KnifeMovement : MonoBehaviour
     public void DestroyKnife()
     {
         gameObject.tag = "Untagged";
+        knifeCollider.enabled = false;
         transform.SetParent(null);
-        collider2D.enabled = false;
-        knifeDestroy = true;
 
         knifeDirection = woodTarget.position - transform.position;
         knifeDirection.Normalize();
+        knifeDestroy = true;
     }
 
     void ResetKnife()
     {
-        knifeObjectPool.ReturnPrefab(gameObject);
         gameObject.tag = "ScoreObject";
         transform.rotation = Quaternion.Euler(Vector3.zero);
 
-        collider2D.enabled = true;
-        transform.SetParent(null);
+        knifeCollider.enabled = true;
+
         knifeCollided = false;
         knifeDropped = false;
         knifeDestroy = false;
+
+        knifeObjectPool.ReturnPrefab(gameObject);
     }
 }

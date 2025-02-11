@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimeLimit: 30
-  woodCountSpeed: 0.15
+  countSpeed: 0.2
   FadeOutUI: {fileID: 1549630946}
   timerText: {fileID: 1313578432}
   scoreText: {fileID: 2057815551}
@@ -1285,6 +1285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 643233613}
   woodSpawner: {fileID: 89193812}
+  knifeSpawner: {fileID: 0}
 --- !u!1001 &1539677103
 PrefabInstance:
   m_ObjectHideFlags: 0
