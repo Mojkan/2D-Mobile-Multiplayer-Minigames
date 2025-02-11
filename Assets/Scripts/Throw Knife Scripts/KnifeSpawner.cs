@@ -13,6 +13,9 @@ public class KnifeSpawner : MonoBehaviour
     [SerializeField] ObjectPool knifeObjectPool;
     [SerializeField] Transform WoodTarget;
 
+    public delegate void DestroyAllKnivesHandler();
+    public event DestroyAllKnivesHandler DestroyAllKnivesEvent;
+
     void Update()
     {
         RotateWoodTarget();
@@ -46,17 +49,12 @@ public class KnifeSpawner : MonoBehaviour
         knifeMovment.gameManager = gameManager;
         knifeMovment.knifeObjectPool = knifeObjectPool;
         knifeMovment.woodTarget = WoodTarget;
+        DestroyAllKnivesEvent += knifeMovment.DestroyKnife;
     }
 
-    public void DestroyAllKnifes()
+    public void DestroyAllActiveKnifes()
     {
-        GameObject[] knifes = GameObject.FindGameObjectsWithTag("ScoreObject");
-
-        for(int i = 0; i < knifes.Length; i++)
-        {
-            knifes[i].GetComponent<KnifeMovement>().DestroyKnife();
-        }
-
+        DestroyAllKnivesEvent?.Invoke();
         SpawnNewKnife();
     }
 }

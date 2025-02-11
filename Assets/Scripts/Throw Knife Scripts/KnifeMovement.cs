@@ -27,7 +27,8 @@ public class KnifeMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ScoreObject") && !knifeCollided)
         {
-            knifeSpawner.DestroyAllKnifes();
+            knifeCollided = true;
+            knifeSpawner.DestroyAllActiveKnifes();
         }
         else if (collision.gameObject.CompareTag("WoodTarget"))
         {
@@ -72,11 +73,8 @@ public class KnifeMovement : MonoBehaviour
 
         if (knifeDestroy)
         {
-            Debug.Log(Vector2.Distance(woodTarget.position, transform.position) < minDestroyDistance);
-
             if (Vector2.Distance(woodTarget.position, transform.position) < minDestroyDistance)
             {
-                GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 transform.position -= knifeDirection * destroyShootSpeed * Time.deltaTime;
             }
             else
@@ -99,6 +97,8 @@ public class KnifeMovement : MonoBehaviour
 
     void ResetKnife()
     {
+        knifeSpawner.DestroyAllKnivesEvent -= DestroyKnife;
+
         gameObject.tag = "ScoreObject";
         transform.rotation = Quaternion.Euler(Vector3.zero);
 
