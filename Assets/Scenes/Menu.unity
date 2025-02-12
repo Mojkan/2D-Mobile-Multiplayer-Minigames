@@ -1883,7 +1883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3775360856168035230, guid: d28acae1df3dc1e4fab4ed184ac1c1c6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3784010985780489358, guid: d28acae1df3dc1e4fab4ed184ac1c1c6, type: 3}
       propertyPath: m_Pivot.x
@@ -4280,6 +4280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyUIManager: {fileID: 0}
   isGameCompleted: 0
+  currentScore: 0
 --- !u!1 &1324482782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4749,7 +4750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de5cfb49c595574e8a5b310822b30fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonClickSoundVolume: 0.5
   menuUI: {fileID: 1811600634}
   logOutUI: {fileID: 2049807671}
   QuitUI: {fileID: 466707737}
