@@ -5,19 +5,19 @@ using TMPro;
 
 public class MenuUIManager : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] float buttonClickSoundVolume;
-
-    [Header("Reference")]
+    [Header("Reference UI")]
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject logOutUI;
     [SerializeField] GameObject QuitUI;
-    [Space(10)]
+
+    [Header("Reference Find Game UI")]
     [SerializeField] GameObject findGameUI;
-    [Space(10)]
+
+    [Header("Reference Join Game UI")]
     [SerializeField] GameObject JoinLobbyUI;
     [SerializeField] TMP_InputField lobbyCodeInput;
-    [Space(10)]
+
+    [Header("Reference Create Game UI")]
     [SerializeField] GameObject CreateLobbyUI;
     [SerializeField] Slider LobbyMaxPlayersInput;
     [SerializeField] TextMeshProUGUI MaxPlayerNumberUI;
@@ -131,5 +131,4 @@ public class MenuUIManager : MonoBehaviour
         GameLobbyManager.Instance.CreateLobby((int)LobbyMaxPlayersInput.value);
     }
     #endregion
-
 }

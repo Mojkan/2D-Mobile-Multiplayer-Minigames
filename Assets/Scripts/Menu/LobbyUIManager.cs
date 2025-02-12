@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class LobbyUIManager : MonoBehaviour
 {
+    [Header("Reference UI")]
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject JoinLobbyUI;
     [SerializeField] GameObject lobbyUI;
     [SerializeField] TextMeshProUGUI lobbyCodeText;
 
+    [Header("Reference NameUI Prefab")]
     [SerializeField] GameObject userInfoUIPrefab;
     [SerializeField] Transform userInfoUIPrefabParent;
 
+    [Header("Reference Fade Out")]
     [SerializeField] GameObject fadeOutUI;
 
     void Start()

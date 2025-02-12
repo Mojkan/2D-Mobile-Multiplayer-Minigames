@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LobbyWinnerUIManager : MonoBehaviour
 {
+    [Header("Reference UI")]
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject lobbyWinnerUI;
     [SerializeField] TextMeshProUGUI lobbyWinnerText;
 
+    [Header("Reference NameUI Prefab")]
     [SerializeField] GameObject userInfoUIPrefab;
     [SerializeField] Transform userInfoUIPrefabParent;
 
