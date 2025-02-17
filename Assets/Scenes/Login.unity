@@ -1455,6 +1455,9 @@ MonoBehaviour:
   - soundName: SCORECOUNTING
     volume: 0.5
     audioClip: {fileID: 8300000, guid: 8031d134cb66000419a576819cee9bf9, type: 3}
+  - soundName: KNIFEHIT
+    volume: 0.3
+    audioClip: {fileID: 8300000, guid: cd3d7b49f1496954ea4534f9b991efaa, type: 3}
   pitchIncreaseAmount: 0.02
   maxPitch: 1.75
   resetTime: 2

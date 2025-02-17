@@ -27,11 +27,13 @@ public class KnifeMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ScoreObject") && !knifeCollided)
         {
+            SoundManager.Instance.PlaySound("KNIFEHIT");
             knifeCollided = true;
             knifeSpawner.DestroyAllActiveKnifes();
         }
         else if (collision.gameObject.CompareTag("WoodTarget") && !knifeCollided)
         {
+            SoundManager.Instance.PlaySound("KNIFEHIT");
             knifeCollided = true;
             transform.SetParent(collision.transform);
             knifeSpawner.SpawnNewKnife();
