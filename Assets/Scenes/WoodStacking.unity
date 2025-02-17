@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimeLimit: 40
-  countSpeed: 0.2
+  maxTimeCounting: 2.5
   FadeOutUI: {fileID: 1549630946}
   timerText: {fileID: 1313578432}
   scoreText: {fileID: 2057815551}

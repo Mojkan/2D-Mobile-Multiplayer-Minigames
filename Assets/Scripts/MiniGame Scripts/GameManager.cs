@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float gameTimeLimit;
-    [SerializeField] float countSpeed;
+    [SerializeField] float maxTimeCounting;
 
     [Header("Reference")]
     [SerializeField] GameObject FadeOutUI;
@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
         GameObject[] scoreGameObjects = GameObject.FindGameObjectsWithTag("ScoreObject");
 
         GameLobbyManager.Instance.UploadScore(scoreGameObjects.Length);
+
+        float countSpeed = maxTimeCounting / scoreGameObjects.Length;
 
         for (int i = 0; i < scoreGameObjects.Length; i++)
         {

@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884be827f7d51b146b190426968201ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeedHorizontal: 5
+  moveSpeedHorizontal: 7
   rb2D: {fileID: 6620474427175096557}
   woodSpawner: {fileID: 0}
   gameManager: {fileID: 0}
