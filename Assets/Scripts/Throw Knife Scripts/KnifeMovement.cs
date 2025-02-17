@@ -27,7 +27,7 @@ public class KnifeMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ScoreObject") && !knifeCollided)
         {
-            SoundManager.Instance.PlaySound("KNIFEHIT");
+            SoundManager.Instance.PlaySound("KNIFEFAIL");
             knifeCollided = true;
             knifeSpawner.DestroyAllActiveKnifes();
         }

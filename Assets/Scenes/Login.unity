@@ -1458,6 +1458,9 @@ MonoBehaviour:
   - soundName: KNIFEHIT
     volume: 0.3
     audioClip: {fileID: 8300000, guid: cd3d7b49f1496954ea4534f9b991efaa, type: 3}
+  - soundName: KNIFEFAIL
+    volume: 0.5
+    audioClip: {fileID: 8300000, guid: cea95f9feeed7334abcc8f27abddf5e1, type: 3}
   pitchIncreaseAmount: 0.02
   maxPitch: 1.75
   resetTime: 2
