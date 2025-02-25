@@ -101,7 +101,6 @@ public class KnifeMovement : MonoBehaviour
     {
         knifeSpawner.DestroyAllKnivesEvent -= DestroyKnife;
 
-        gameObject.tag = "ScoreObject";
         transform.rotation = Quaternion.Euler(Vector3.zero);
 
         knifeCollider.enabled = true;
