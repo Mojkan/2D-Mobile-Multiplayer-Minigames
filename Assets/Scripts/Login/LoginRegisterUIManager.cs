@@ -54,7 +54,7 @@ public class LoginRegisterUIManager : MonoBehaviour
         Invoke(nameof(ChangeToMenuScene), 2);
     }
 
-    private void OnSignInFailure(string error)
+    private void OnSignInFailure()
     {
         ErrorHandler.Instance.DisplayErrorMessage("Sign in failed!", 900, 3);
     }
@@ -83,7 +83,7 @@ public class LoginRegisterUIManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    private void OnRegisterFailure(string error)
+    private void OnRegisterFailure()
     {
         ErrorHandler.Instance.DisplayErrorMessage("Register failed!", 970, 3);
     }

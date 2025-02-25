@@ -53,13 +53,13 @@ public class KnifeMovement : MonoBehaviour
 
     void CheckInput()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (!knifeDropped && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             knifeDropped = true;
             gameObject.tag = "ScoreObject";
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (!knifeDropped && Input.GetMouseButtonDown(0))
         {
             knifeDropped = true;
             gameObject.tag = "ScoreObject";

@@ -1,6 +1,6 @@
+using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 
 public class LobbyUIManager : MonoBehaviour
 {
@@ -34,11 +34,12 @@ public class LobbyUIManager : MonoBehaviour
 
     public void UpdateUserInfoUI()
     {
-        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserDataSuccess, OnUpdateUserDataFailure);
+        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserDataSuccess);
     }
 
     void OnUpdateUserDataSuccess(List<(string name, int score)> players)
     {
+        // Remove old names in lobby ui
         foreach(Transform OldUserUIObject in userInfoUIPrefabParent)
         {
             if (OldUserUIObject.name == "PlayerNameAndScore(Clone)")
@@ -60,11 +61,6 @@ public class LobbyUIManager : MonoBehaviour
             newUserInfoUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -630 -(i * 230), 0);
             newUserInfoUI.GetComponent<RectTransform>().localScale = Vector3.one;
         }
-    }
-
-    void OnUpdateUserDataFailure()
-    {
-        Debug.Log("Failed updating lobby UI");
     }
 
     public void DisableLobbyUI()

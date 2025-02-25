@@ -54,7 +54,7 @@ public class FirebaseManager : MonoBehaviour
     #endregion
 
     #region Firebase AccountManagement
-    public void RegisterNewUser(string email, string password, string userProfile, Action onSuccess, Action<string> onFailure)
+    public void RegisterNewUser(string email, string password, string userProfile, Action onSuccess, Action onFailure)
     {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
@@ -68,19 +68,18 @@ public class FirebaseManager : MonoBehaviour
             }
             else
             {
-                onFailure?.Invoke(task.Exception?.Message);
+                onFailure?.Invoke();
             }
         });
     }
 
-    public void SignIn(string email, string password, Action onSuccess, Action<string> onFailure)
+    public void SignIn(string email, string password, Action onSuccess, Action onFailure)
     {
-        Debug.Log("Starting Sign-In");
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.Exception != null)
             {
-                onFailure?.Invoke(task.Exception.Message);
+                onFailure?.Invoke();
             }
             else
             {
@@ -93,7 +92,6 @@ public class FirebaseManager : MonoBehaviour
     public void SignOut()
     {
         auth.SignOut();
-        Debug.Log("User signed out");
     }
     #endregion
 
@@ -169,7 +167,7 @@ public class FirebaseManager : MonoBehaviour
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").Child(savedUsername).RemoveValueAsync().ContinueWith(task =>{});
     }
 
-    public void GetLobbyUserInfo(Action<List<(string Name, int Score)>> OnSuccess, Action OnFailure)
+    public void GetLobbyUserInfo(Action<List<(string Name, int Score)>> OnSuccess)
     {
         db.RootReference.Child("gamelobbies").Child(savedLobbyCode).Child("Players").GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -186,10 +184,6 @@ public class FirebaseManager : MonoBehaviour
                 }
 
                 OnSuccess?.Invoke(playerInfo);
-            }
-            else
-            {
-                OnFailure?.Invoke();
             }
         });
     }

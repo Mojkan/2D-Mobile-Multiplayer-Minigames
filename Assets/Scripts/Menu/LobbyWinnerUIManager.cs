@@ -25,7 +25,7 @@ public class LobbyWinnerUIManager : MonoBehaviour
 
     public void UpdateUserData()
     {
-        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserDataSuccess, OnUpdateUserDataFailure);
+        FirebaseManager.Instance.GetLobbyUserInfo(OnUpdateUserDataSuccess);
     }
 
     void OnUpdateUserDataSuccess(List<(string name, int score)> players)
@@ -50,16 +50,12 @@ public class LobbyWinnerUIManager : MonoBehaviour
         GameLobbyManager.Instance.isGameCompleted = false;
     }
 
-    void OnUpdateUserDataFailure()
-    {
-        Debug.Log("Failed updating lobby UI");
-    }
-
     public void DisableLobbyWinnerUI()
     {
         SoundManager.Instance.PlaySound("BUTTONCLICK");
         FirebaseManager.Instance.QuitLobby();
         GameLobbyManager.Instance.currentScore = 0;
+
         menuUI.SetActive(true);
         lobbyWinnerUI.SetActive(false);
     }

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Physics2D.gravity = new Vector3(0, -9.81f, 0); // Fixes no gravity bug when replaying the game
+        Physics2D.gravity = new Vector3(0, -9.81f, 0); // Fixes gravity bug when replaying the game
         gameTimer = gameTimeLimit;
     }
 
