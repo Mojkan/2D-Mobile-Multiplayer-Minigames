@@ -65,15 +65,22 @@ public class GameManager : MonoBehaviour
 
         float countSpeed = maxTimeCounting / scoreGameObjects.Length;
 
-        for (int i = 0; i < scoreGameObjects.Length; i++)
+        if (scoreGameObjects.Length != 0)
         {
-            Destroy(scoreGameObjects[i]);
-            UpdateScore();
-            SoundManager.Instance.PlaySoundWithPitchIncrease("SCORECOUNTING");
-            yield return new WaitForSeconds(countSpeed);
-        }
+            for (int i = 0; i < scoreGameObjects.Length; i++)
+            {
+                Destroy(scoreGameObjects[i]);
+                UpdateScore();
+                SoundManager.Instance.PlaySoundWithPitchIncrease("SCORECOUNTING");
+                yield return new WaitForSeconds(countSpeed);
+            }
 
-        GameEnd();
+            GameEnd();
+        }
+        else
+        {
+            Invoke(nameof(GameEnd), maxTimeCounting);
+        }
     }
 
     void UpdateScore()
